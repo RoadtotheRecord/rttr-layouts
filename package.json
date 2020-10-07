@@ -1,0 +1,30 @@
+{
+    "name": "rttr_layouts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+  
+    "nodecg": {
+        "compatibleRange": "^1.0.0",
+        "dashboardPanels": [
+            {
+                "name": "dashboard",
+                "title": "管理画面",
+                "file": "dashboard.html",
+                "fullbleed": true
+            }
+        ],
+        "graphics": [
+            {
+                "file": "index.html",
+                "width": 1920,
+                "height": 1080
+            }
+        ]
+    }
+}

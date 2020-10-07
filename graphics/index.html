@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body background="background.png">
+    <div id="runner1box">
+        <div class="name-column" id="name1"></div>
+        <img class="icon-column" src="icon_resize.JPG">
+        <div class="left-column">ゲーム名</div><div class="right-column" id="game1"></div>
+        <div class="left-column">カテゴリ</div><div class="right-column" id="category1"></div>
+        <div class="left-column">目標タイム</div><div class="right-column" id="target1"></div>
+        <div class="left-column">持ち時間</div><div class="right-column" id="limit1"></div>
+        <div class="left-column" id="time1"></div>
+        <progress class="progress-column" id="progress1" value="100" max="100"></div>
+    </div>
+</body>
+
+<script>
+    const name1 = document.getElementById("name1");
+    const name1Rep = nodecg.Replicant("name1");
+    name1Rep.on("change", newValue => {
+        name1.innerText = newValue;
+    });
+    const game1 = document.getElementById("game1");
+    const game1Rep = nodecg.Replicant("game1");
+    game1Rep.on("change", newValue => {
+        game1.innerText = newValue;
+    });
+    const category1 = document.getElementById("category1");
+    const category1Rep = nodecg.Replicant("category1");
+    category1Rep.on("change", newValue => {
+        category1.innerText = newValue;
+    });
+    const target1 = document.getElementById("target1");
+    const target1Rep = nodecg.Replicant("target1");
+    target1Rep.on("change", newValue => {
+        target1.innerText = newValue;
+    });
+    const limit1 = document.getElementById("limit1");
+    const limit1Rep = nodecg.Replicant("limit1");
+    limit1Rep.on("change", newValue => {
+        if (newValue != 0) {
+            limit1.innerText = newValue;
+        } else {
+            limit1.innerText = "Time up!";
+        }
+    });
+    const progress1 = document.getElementById("progress1");
+    const progress1Rep = nodecg.Replicant("progress1");
+    progress1Rep.on("change", newValue => {
+        progress1.value = newValue;
+    });
+    const time1 = document.getElementById("time1");
+    const time1Rep = nodecg.Replicant("time1");
+    time1Rep.on("change", newValue => {
+        time1.innerText = newValue;
+    });
+</script>
+</html>

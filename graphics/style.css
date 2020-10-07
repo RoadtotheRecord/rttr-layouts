@@ -1,0 +1,47 @@
+#runner1box {
+    position: absolute;
+    left: 10px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 560px;
+    font-size: 18px;
+    color: black;
+    top:20px;
+    background-color: #00d8ff;
+}
+
+.name-column {
+    float: left;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.icon-column {
+    float: left;
+    width: 15%;
+}
+
+.left-column {
+    float: left;
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.right-column {
+    float: right;
+    width: 60%;
+    /* background-color: #ddd; 視覚化のための背景色   */
+}
+
+.progress-column {
+    float: left;
+    width: 100%;
+}
+
+progress {
+    -webkit-appearance: none;
+}
+  
+::-webkit-progress-value {
+    background-color: #00d9ffa6;
+}
