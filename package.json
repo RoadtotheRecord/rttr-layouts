@@ -13,10 +13,28 @@
         "compatibleRange": "^1.0.0",
         "dashboardPanels": [
             {
-                "name": "dashboard",
-                "title": "管理画面",
-                "file": "dashboard.html",
-                "fullbleed": true
+                "width": "3",
+                "name": "GroupA",
+                "title": "A班",
+                "file": "GroupA.html"
+            },
+            {
+                "width": "3",
+                "name": "GroupB",
+                "title": "B班",
+                "file": "GroupB.html"
+            },
+            {
+                "width": "3",
+                "name": "GroupC",
+                "title": "C班",
+                "file": "GroupC.html"
+            },
+            {
+                "width": "3",
+                "name": "GroupD",
+                "title": "D班",
+                "file": "GroupD.html"
             }
         ],
         "graphics": [
@@ -24,7 +42,19 @@
                 "file": "index.html",
                 "width": 1920,
                 "height": 1080
+            },
+            {
+                "file": "_test.html",
+                "width": 1920,
+                "height": 1080
             }
-        ]
+        ],
+		"assetCategories": [
+			{
+				"name": "runnerIcon",
+				"title": "走者アイコン",
+				"allowedTypes": ["jpg", "jpeg", "gif", "png"]
+			}
+		]
     }
 }

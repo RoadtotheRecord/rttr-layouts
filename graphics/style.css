@@ -1,13 +1,49 @@
-#runner1box {
+#boxGroupA {
     position: absolute;
-    left: 10px;
+    left: 20px;
     border-radius: 20px;
     padding: 20px;
     width: 560px;
-    font-size: 18px;
-    color: black;
-    top:20px;
+    font-size: 16px;
+    color: white;
+    top: 20px;
+    background-color: #0800ff;
+}
+
+#boxGroupB {
+    position: absolute;
+    left: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 560px;
+    font-size: 16px;
+    color: white;
+    top: 200px;
     background-color: #00d8ff;
+}
+
+#boxGroupC {
+    position: absolute;
+    left: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 560px;
+    font-size: 16px;
+    color: white;
+    top: 355px;
+    background-color: #00bba4;
+}
+
+#boxGroupD {
+    position: absolute;
+    left: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 560px;
+    font-size: 16px;
+    color: white;
+    top: 510px;
+    background-color: #00ff2e;
 }
 
 .name-column {
@@ -23,25 +59,57 @@
 
 .left-column {
     float: left;
-    width: 25%;
+    width: 17%;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
 .right-column {
     float: right;
-    width: 60%;
+    width: 68%;
     /* background-color: #ddd; 視覚化のための背景色   */
 }
 
-.progress-column {
-    float: left;
-    width: 100%;
+.progress1 {
+    position: absolute;
+    background-color: #ccc;
+    left: 640px;
+    top: 5px;
+    width: 76px;
+    height: 670px;
+    overflow: hidden;
 }
 
-progress {
-    -webkit-appearance: none;
+.progress2 {
+    position: absolute;
+    background-color: #ccc;
+    left: 90px;
+    top: 1035px;
+    width: 550px;
+    height: 45px;
+    overflow: hidden;
 }
-  
-::-webkit-progress-value {
-    background-color: #00d9ffa6;
+
+.progress3 {
+    position: absolute;
+    background-color: #ccc;
+    left: 730px;
+    top: 1035px;
+    width: 550px;
+    height: 45px;
+    overflow: hidden;
+}
+
+.progress4 {
+    position: absolute;
+    background-color: #ccc;
+    left: 1370px;
+    top: 1035px;
+    width: 550px;
+    height: 45px;
+    overflow: hidden;
+}
+
+.progress {
+    background-color: #eeff00;
+    height: 100%;
 }

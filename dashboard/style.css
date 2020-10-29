@@ -1,0 +1,10 @@
+.left-column {
+    float: left;
+    width: 25%;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.right-column {
+    float: right;
+    width: 75%;
+}
