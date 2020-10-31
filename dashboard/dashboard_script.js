@@ -43,11 +43,16 @@ request.onload = function () {
 let currentTime = 0;
 let limitTime = 0;
 let showTime = "0:00:00";
-let currentRunner = localStorage.getItem("currentRunner" + currentGroup);
-if (currentRunner == null) {
-    localStorage.setItem("currentRunner" + currentGroup, 0);
-    currentRunner = localStorage.getItem("currentRunner" + currentGroup)
-}
+let currentRunner = 0;
+const currentRunnerRep = nodecg.Replicant("currentRunner" + currentGroup);
+nodecg.readReplicant("currentRunner" + currentGroup, value => {
+    currentRunner = value;
+    console.log("currentRunner = " + currentRunner);
+    if (currentRunner == undefined) {
+        currentRunnerRep.value = 0;
+        currentRunner = 0;
+    }
+});
 
 const nameRep = nodecg.Replicant("name" + currentGroup);
 const gameRep = nodecg.Replicant("game" + currentGroup);
@@ -72,7 +77,7 @@ function reload() {
 function prevRunner() {
     if (currentRunner != 0) {
         currentRunner--;
-        localStorage.setItem("currentRunner" + currentGroup, currentRunner);
+        currentRunnerRep.value = currentRunner;
     }
     buttomChange();
     setText();
@@ -81,7 +86,7 @@ function prevRunner() {
 function nextRunner() {
     if (currentRunner != data.length - 1) {
         currentRunner++;
-        localStorage.setItem("currentRunner" + currentGroup, currentRunner);
+        currentRunnerRep.value = currentRunner;
     }
     buttomChange();
     setText();
