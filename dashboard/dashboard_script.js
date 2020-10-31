@@ -9,6 +9,7 @@ let prevButton = new Object();
 let nextButton = new Object();
 let startButton = new Object();
 let stopButton = new Object();
+let iconImage = new Object();
 
 window.onload = function () {
     nameText = document.getElementById("nameText");
@@ -22,6 +23,7 @@ window.onload = function () {
     nextButton = document.getElementById("nextButton");
     startButton = document.getElementById("startButton");
     stopButton = document.getElementById("stopButton");
+    iconImage = document.getElementById("iconImage");
     requestReload();
 }
 
@@ -31,6 +33,7 @@ let currentRunner = 0;
 
 const str = window.location.href.split('/').pop();
 const currentGroup = str.slice(0, -5)
+const assetsPath = "/assets/rttr_layouts/runnerIcon/"
 const request = new XMLHttpRequest();
 const REQ_URL = "https://script.google.com/macros/s/AKfycbyE6KLZR66q7SF6sLb3BZM2YLjM7N7yrVdLBjNRgK69Z1fohv-U/exec?sheet=" + currentGroup
 request.onload = function () {
@@ -47,6 +50,7 @@ const targetRep = nodecg.Replicant("target" + currentGroup);
 const limitRep = nodecg.Replicant("limit" + currentGroup);
 const verticalRep = nodecg.Replicant("vertical" + currentGroup);
 const horizontalRep = nodecg.Replicant("horizontal" + currentGroup);
+const iconRep = nodecg.Replicant("icon" + currentGroup);
 
 function requestReload() {
     request.open('GET', REQ_URL, true);
@@ -102,6 +106,7 @@ function setText() {
     targetText.innerText = data[currentRunner].target_time;
     limitText.innerText = data[currentRunner].limit_time;
     currentText.innerText = data[currentRunner].limit_time;
+    iconImage.src = assetsPath + data[currentRunner].icon;
     let h = data[currentRunner].limit_time.slice(0, 1) * 60 * 60;
     let m = data[currentRunner].limit_time.slice(2, 4) * 60;
     let s = data[currentRunner].limit_time.slice(5, 7) * 1;
@@ -111,6 +116,7 @@ function setText() {
     categoryRep.value = data[currentRunner].category;
     targetRep.value = data[currentRunner].target_time;
     limitRep.value = data[currentRunner].limit_time;
+    iconRep.value = assetsPath + data[currentRunner].icon;
 
     // verticalRep.value = 0;
     // horizontalRep.value = 0;

@@ -1,12 +1,12 @@
-let nameGroupA = new Object();
-let nameGroupB = new Object();
-let nameGroupC = new Object();
-let nameGroupD = new Object();
-
 let iconGroupA = new Object();
 let iconGroupB = new Object();
 let iconGroupC = new Object();
 let iconGroupD = new Object();
+
+let nameGroupA = new Object();
+let nameGroupB = new Object();
+let nameGroupC = new Object();
+let nameGroupD = new Object();
 
 let gameGroupA = new Object();
 let gameGroupB = new Object();
@@ -23,10 +23,10 @@ let targetGroupB = new Object();
 let targetGroupC = new Object();
 let targetGroupD = new Object();
 
-let limitGroupA = new Object();
-let limitGroupB = new Object();
-let limitGroupC = new Object();
-let limitGroupD = new Object();
+// let limitGroupA = new Object();
+// let limitGroupB = new Object();
+// let limitGroupC = new Object();
+// let limitGroupD = new Object();
 
 let progress1 = new Object();
 let progress2 = new Object();
@@ -59,7 +59,7 @@ window.onload = function () {
     targetGroupC = document.getElementById("targetGroupC");
     targetGroupD = document.getElementById("targetGroupD");
 
-    limitGroupA = document.getElementById("limitGroupA");
+    // limitGroupA = document.getElementById("limitGroupA");
     // limitGroupB = document.getElementById("limitGroupB");
     // limitGroupC = document.getElementById("limitGroupC");
     // limitGroupD = document.getElementById("limitGroupD");
@@ -95,7 +95,7 @@ const targetGroupBrep = nodecg.Replicant("targetGroupB");
 const targetGroupCrep = nodecg.Replicant("targetGroupC");
 const targetGroupDrep = nodecg.Replicant("targetGroupD");
 
-const limitGroupArep = nodecg.Replicant("limitGroupA");
+// const limitGroupArep = nodecg.Replicant("limitGroupA");
 // const limitGroupBrep = nodecg.Replicant("limitGroupB");
 // const limitGroupCrep = nodecg.Replicant("limitGroupC");
 // const limitGroupDrep = nodecg.Replicant("limitGroupD");
@@ -104,6 +104,11 @@ const progress1Rep = nodecg.Replicant("vertical1");
 const progress2Rep = nodecg.Replicant("horizontal2");
 const progress3Rep = nodecg.Replicant("horizontal3");
 const progress4Rep = nodecg.Replicant("horizontal4");
+
+iconGroupArep.on("change", newValue => { iconGroupA.src = newValue; });
+iconGroupBrep.on("change", newValue => { iconGroupB.src = newValue; });
+iconGroupCrep.on("change", newValue => { iconGroupC.src = newValue; });
+iconGroupDrep.on("change", newValue => { iconGroupD.src = newValue; });
 
 nameGroupArep.on("change", newValue => { nameGroupA.innerText = newValue; });
 nameGroupBrep.on("change", newValue => { nameGroupB.innerText = newValue; });
@@ -125,13 +130,13 @@ targetGroupBrep.on("change", newValue => { targetGroupB.innerText = newValue; })
 targetGroupCrep.on("change", newValue => { targetGroupC.innerText = newValue; });
 targetGroupDrep.on("change", newValue => { targetGroupD.innerText = newValue; });
 
-limitGroupArep.on("change", newValue => {
-    if (newValue != 0) {
-        limitGroupA.innerText = newValue;
-    } else {
-        limitGroupA.innerText = "Time up!";
-    }
-});
+// limitGroupArep.on("change", newValue => {
+//     if (newValue != 0) {
+//         limitGroupA.innerText = newValue;
+//     } else {
+//         limitGroupA.innerText = "Time up!";
+//     }
+// });
 
 // limitGroupBrep.on("change", newValue => {
 //     if (newValue != 0) {

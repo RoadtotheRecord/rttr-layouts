@@ -46,27 +46,26 @@
     background-color: #00ff2e;
 }
 
-.name-column {
+.nameColumn {
     float: left;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.icon-column {
+.iconColumn {
     float: left;
     width: 15%;
 }
 
-.left-column {
+.leftColumn {
     float: left;
     width: 17%;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.right-column {
+.rightColumn {
     float: right;
     width: 68%;
-    /* background-color: #ddd; 視覚化のための背景色   */
 }
 
 .progress1 {

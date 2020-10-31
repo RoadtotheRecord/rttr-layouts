@@ -39,12 +39,7 @@
         ],
         "graphics": [
             {
-                "file": "index.html",
-                "width": 1920,
-                "height": 1080
-            },
-            {
-                "file": "_test.html",
+                "file": "GroupA_index.html",
                 "width": 1920,
                 "height": 1080
             }
