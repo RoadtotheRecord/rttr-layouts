@@ -100,10 +100,10 @@ const targetGroupDrep = nodecg.Replicant("targetGroupD");
 // const limitGroupCrep = nodecg.Replicant("limitGroupC");
 // const limitGroupDrep = nodecg.Replicant("limitGroupD");
 
-const progress1Rep = nodecg.Replicant("vertical1");
-const progress2Rep = nodecg.Replicant("horizontal2");
-const progress3Rep = nodecg.Replicant("horizontal3");
-const progress4Rep = nodecg.Replicant("horizontal4");
+const progress1Rep = nodecg.Replicant("verticalGroupA");
+const progress2Rep = nodecg.Replicant("horizontalGroupB");
+const progress3Rep = nodecg.Replicant("horizontalGroupC");
+const progress4Rep = nodecg.Replicant("horizontalGroupA");
 
 iconGroupArep.on("change", newValue => { iconGroupA.src = newValue; });
 iconGroupBrep.on("change", newValue => { iconGroupB.src = newValue; });

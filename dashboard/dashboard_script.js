@@ -27,21 +27,27 @@ window.onload = function () {
     requestReload();
 }
 
-let data = [];
-let currentTime = 0;
-let currentRunner = 0;
-
 const str = window.location.href.split('/').pop();
 const currentGroup = str.slice(0, -5)
 const assetsPath = "/assets/rttr_layouts/runnerIcon/"
 const request = new XMLHttpRequest();
 const REQ_URL = "https://script.google.com/macros/s/AKfycbyE6KLZR66q7SF6sLb3BZM2YLjM7N7yrVdLBjNRgK69Z1fohv-U/exec?sheet=" + currentGroup
+let data = [];
 request.onload = function () {
     data = this.response;
     reloadButton.disabled = false;
     buttomChange();
     setText();
 };
+
+let currentTime = 0;
+let limitTime = 0;
+let showTime = "0:00:00";
+let currentRunner = localStorage.getItem("currentRunner" + currentGroup);
+if (currentRunner == null) {
+    localStorage.setItem("currentRunner" + currentGroup, 0);
+    currentRunner = localStorage.getItem("currentRunner" + currentGroup)
+}
 
 const nameRep = nodecg.Replicant("name" + currentGroup);
 const gameRep = nodecg.Replicant("game" + currentGroup);
@@ -65,7 +71,8 @@ function reload() {
 
 function prevRunner() {
     if (currentRunner != 0) {
-        currentRunner--; 
+        currentRunner--;
+        localStorage.setItem("currentRunner" + currentGroup, currentRunner);
     }
     buttomChange();
     setText();
@@ -74,6 +81,7 @@ function prevRunner() {
 function nextRunner() {
     if (currentRunner != data.length - 1) {
         currentRunner++;
+        localStorage.setItem("currentRunner" + currentGroup, currentRunner);
     }
     buttomChange();
     setText();
@@ -82,15 +90,40 @@ function nextRunner() {
 function timerStart() {
     startButton.disabled = true;
     stopButton.disabled = false;
+    remaining_time = getNowTime();
     count_down = setInterval(function() {
-        if (set_limit != 0) {
-            set_limit--;
+        if (currentTime != 0) {
+            let nowTime = getNowTime();
+            let diffTime = nowTime - remaining_time;
+            console.log("diff = " + diffTime);
+            currentTime = currentTime - Math.floor(diffTime / 1000);
         }
-        console.log(set_limit)
-        // limitRep.value = set_limit;
-        // verticalRep.value = 670 - (670 * set_limit / max_limit);
-        // horizontalRep.value = 550 - (550 * set_limit / max_limit);
+        currentText.innerText = calculationTime(currentTime);
+        verticalRep.value = 670 - (670 * currentTime / limitTime);
+        horizontalRep.value = 550 - (550 * currentTime / limitTime);
+        remaining_time = getNowTime();
     }, 1000);
+}
+
+function getNowTime() {
+    let time = new Date;
+    let nowYear = time.getFullYear();
+    let nowMonth = time.getMonth();
+    let nowDate = time.getDate();
+    let nowHour = time.getHours();
+    let nowMin = time.getMinutes();
+    let nowSec = time.getSeconds();
+    let remaining = new Date(nowYear, nowMonth, nowDate, nowHour, nowMin, nowSec);
+    return remaining.getTime()
+}
+
+function calculationTime(currentTime) {
+    let hour = Math.floor(currentTime / 3600);
+    let diffHour = currentTime - (hour * 3600);
+    let min = Math.floor(diffHour / 60);
+    let diffMin = diffHour - (min * 60);
+    let sec = Math.floor(diffMin);
+    return hour + ":" + ('00' + min).slice(-2) + ":" + ('00' + sec).slice(-2)
 }
 
 function timerStop() {
@@ -99,29 +132,34 @@ function timerStop() {
     clearInterval(count_down)
 }
 
+function timerReset() {
+    stopButton.disabled = true;
+    startButton.disabled = false;
+    
+    showTime = data[currentRunner].limit_time;
+    let h = showTime.slice(0, 1) * 60 * 60;
+    let m = showTime.slice(2, 4) * 60;
+    let s = showTime.slice(5, 7) * 1;
+    currentTime = h + m + s;
+    limitTime = currentTime;
+    currentText.innerText = showTime;
+    verticalRep.value = 0;
+    horizontalRep.value = 0;
+}
+
 function setText() {
     nameText.innerText = data[currentRunner].runner_name;
     gameText.innerText = data[currentRunner].game_title;
     categoryText.innerText = data[currentRunner].category;
     targetText.innerText = data[currentRunner].target_time;
     limitText.innerText = data[currentRunner].limit_time;
-    currentText.innerText = data[currentRunner].limit_time;
     iconImage.src = assetsPath + data[currentRunner].icon;
-    let h = data[currentRunner].limit_time.slice(0, 1) * 60 * 60;
-    let m = data[currentRunner].limit_time.slice(2, 4) * 60;
-    let s = data[currentRunner].limit_time.slice(5, 7) * 1;
-    currentTime = h + m + s;
     nameRep.value = data[currentRunner].runner_name;
     gameRep.value = data[currentRunner].game_title;
     categoryRep.value = data[currentRunner].category;
     targetRep.value = data[currentRunner].target_time;
     limitRep.value = data[currentRunner].limit_time;
     iconRep.value = assetsPath + data[currentRunner].icon;
-
-    // verticalRep.value = 0;
-    // horizontalRep.value = 0;
-    // set_limit = limit1.value;
-    // max_limit = limit1.value;
 }
 
 function buttomChange() {
