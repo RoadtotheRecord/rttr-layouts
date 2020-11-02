@@ -1,4 +1,4 @@
-#boxGroupA {
+#box1 {
     position: absolute;
     left: 20px;
     border-radius: 20px;
@@ -10,7 +10,7 @@
     background-color: #0800ff;
 }
 
-#boxGroupB {
+#box2 {
     position: absolute;
     left: 20px;
     border-radius: 20px;
@@ -22,7 +22,7 @@
     background-color: #00d8ff;
 }
 
-#boxGroupC {
+#box3 {
     position: absolute;
     left: 20px;
     border-radius: 20px;
@@ -34,7 +34,7 @@
     background-color: #00bba4;
 }
 
-#boxGroupD {
+#box4 {
     position: absolute;
     left: 20px;
     border-radius: 20px;

@@ -1,29 +1,16 @@
-let nameText = new Object();
-let gameText = new Object();
-let categoryText = new Object();
-let targetText = new Object();
-let limitText = new Object();
-let currentText = new Object();
-let reloadButton = new Object();
-let prevButton = new Object();
-let nextButton = new Object();
-let startButton = new Object();
-let stopButton = new Object();
-let iconImage = new Object();
-
 window.onload = function () {
-    nameText = document.getElementById("nameText");
-    gameText = document.getElementById("gameText");
-    categoryText = document.getElementById("categoryText");
-    targetText = document.getElementById("targetText");
-    limitText = document.getElementById("limitText");
-    currentText = document.getElementById("currentText");
-    reloadButton = document.getElementById("reloadButton");
-    prevButton = document.getElementById("prevButton");
-    nextButton = document.getElementById("nextButton");
-    startButton = document.getElementById("startButton");
-    stopButton = document.getElementById("stopButton");
-    iconImage = document.getElementById("iconImage");
+    const nameText = document.getElementById("nameText");
+    const gameText = document.getElementById("gameText");
+    const categoryText = document.getElementById("categoryText");
+    const targetText = document.getElementById("targetText");
+    const limitText = document.getElementById("limitText");
+    const currentText = document.getElementById("currentText");
+    const reloadButton = document.getElementById("reloadButton");
+    const prevButton = document.getElementById("prevButton");
+    const nextButton = document.getElementById("nextButton");
+    const startButton = document.getElementById("startButton");
+    const stopButton = document.getElementById("stopButton");
+    const iconImage = document.getElementById("iconImage");
     requestReload();
 }
 
@@ -47,7 +34,6 @@ let currentRunner = 0;
 const currentRunnerRep = nodecg.Replicant("currentRunner" + currentGroup);
 nodecg.readReplicant("currentRunner" + currentGroup, value => {
     currentRunner = value;
-    console.log("currentRunner = " + currentRunner);
     if (currentRunner == undefined) {
         currentRunnerRep.value = 0;
         currentRunner = 0;
@@ -59,9 +45,14 @@ const gameRep = nodecg.Replicant("game" + currentGroup);
 const categoryRep = nodecg.Replicant("category" + currentGroup);
 const targetRep = nodecg.Replicant("target" + currentGroup);
 const limitRep = nodecg.Replicant("limit" + currentGroup);
-const verticalRep = nodecg.Replicant("vertical" + currentGroup);
-const horizontalRep = nodecg.Replicant("horizontal" + currentGroup);
 const iconRep = nodecg.Replicant("icon" + currentGroup);
+
+const currentTimeTextRep = nodecg.Replicant("currentTimeText" + currentGroup);
+currentTimeTextRep.on("change", newValue => {
+    if (newValue != "NaN:aN:aN") {
+        currentText.innerText = newValue;
+    }
+});
 
 function requestReload() {
     request.open('GET', REQ_URL, true);
@@ -81,6 +72,8 @@ function prevRunner() {
     }
     buttomChange();
     setText();
+    timerStop();
+    timerReset();
 }
 
 function nextRunner() {
@@ -90,66 +83,29 @@ function nextRunner() {
     }
     buttomChange();
     setText();
+    timerStop();
+    timerReset();
 }
 
 function timerStart() {
     startButton.disabled = true;
     stopButton.disabled = false;
-    remaining_time = getNowTime();
-    count_down = setInterval(function() {
-        if (currentTime != 0) {
-            let nowTime = getNowTime();
-            let diffTime = nowTime - remaining_time;
-            console.log("diff = " + diffTime);
-            currentTime = currentTime - Math.floor(diffTime / 1000);
-        }
-        currentText.innerText = calculationTime(currentTime);
-        verticalRep.value = 670 - (670 * currentTime / limitTime);
-        horizontalRep.value = 550 - (550 * currentTime / limitTime);
-        remaining_time = getNowTime();
-    }, 1000);
-}
-
-function getNowTime() {
-    let time = new Date;
-    let nowYear = time.getFullYear();
-    let nowMonth = time.getMonth();
-    let nowDate = time.getDate();
-    let nowHour = time.getHours();
-    let nowMin = time.getMinutes();
-    let nowSec = time.getSeconds();
-    let remaining = new Date(nowYear, nowMonth, nowDate, nowHour, nowMin, nowSec);
-    return remaining.getTime()
-}
-
-function calculationTime(currentTime) {
-    let hour = Math.floor(currentTime / 3600);
-    let diffHour = currentTime - (hour * 3600);
-    let min = Math.floor(diffHour / 60);
-    let diffMin = diffHour - (min * 60);
-    let sec = Math.floor(diffMin);
-    return hour + ":" + ('00' + min).slice(-2) + ":" + ('00' + sec).slice(-2)
+    prevButton.disabled = true;
+    nextButton.disabled = true;
+    nodecg.sendMessage("startTimer", currentGroup);
 }
 
 function timerStop() {
     stopButton.disabled = true;
     startButton.disabled = false;
-    clearInterval(count_down)
+    nodecg.sendMessage("stopTimer", currentGroup);
 }
 
 function timerReset() {
     stopButton.disabled = true;
     startButton.disabled = false;
-    
-    showTime = data[currentRunner].limit_time;
-    let h = showTime.slice(0, 1) * 60 * 60;
-    let m = showTime.slice(2, 4) * 60;
-    let s = showTime.slice(5, 7) * 1;
-    currentTime = h + m + s;
-    limitTime = currentTime;
-    currentText.innerText = showTime;
-    verticalRep.value = 0;
-    horizontalRep.value = 0;
+    buttomChange();
+    nodecg.sendMessage("resetTimer", currentGroup);
 }
 
 function setText() {

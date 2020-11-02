@@ -42,6 +42,21 @@
                 "file": "GroupA_index.html",
                 "width": 1920,
                 "height": 1080
+            },
+            {
+                "file": "GroupB_index.html",
+                "width": 1920,
+                "height": 1080
+            },
+            {
+                "file": "GroupC_index.html",
+                "width": 1920,
+                "height": 1080
+            },
+            {
+                "file": "GroupD_index.html",
+                "width": 1920,
+                "height": 1080
             }
         ],
 		"assetCategories": [

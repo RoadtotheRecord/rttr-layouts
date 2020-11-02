@@ -1,168 +1,132 @@
-let iconGroupA = new Object();
-let iconGroupB = new Object();
-let iconGroupC = new Object();
-let iconGroupD = new Object();
+const icon = {};
+const nameText = {};
+const gameText = {};
+const categoryText = {};
+const targetText = {};
+const limitText = {};
+const progress = {};
 
-let nameGroupA = new Object();
-let nameGroupB = new Object();
-let nameGroupC = new Object();
-let nameGroupD = new Object();
+const iconRep = {};
+const nameTextRep = {};
+const gameTextRep = {};
+const categoryTextRep = {};
+const targetTextRep = {};
+const limitTextRep = {};
+const currentTimeTextRep = {};
 
-let gameGroupA = new Object();
-let gameGroupB = new Object();
-let gameGroupC = new Object();
-let gameGroupD = new Object();
+const currentTime = {};
+const limitTime = {};
+const showTime = {};
+const remainingTime = {};
+const countDown = {};
 
-let categoryGroupA = new Object();
-let categoryGroupB = new Object();
-let categoryGroupC = new Object();
-let categoryGroupD = new Object();
+initReplicant('GroupA');
+initReplicant('GroupB');
+initReplicant('GroupC');
+initReplicant('GroupD');
 
-let targetGroupA = new Object();
-let targetGroupB = new Object();
-let targetGroupC = new Object();
-let targetGroupD = new Object();
-
-// let limitGroupA = new Object();
-// let limitGroupB = new Object();
-// let limitGroupC = new Object();
-// let limitGroupD = new Object();
-
-let progress1 = new Object();
-let progress2 = new Object();
-let progress3 = new Object();
-let progress4 = new Object();
+const str = window.location.href.split('/').pop();
+const mainGroup = str.slice(0, -11);
 
 window.onload = function () {
-    iconGroupA = document.getElementById("iconGroupA");
-    iconGroupB = document.getElementById("iconGroupB");
-    iconGroupC = document.getElementById("iconGroupC");
-    iconGroupD = document.getElementById("iconGroupD");
-
-    nameGroupA = document.getElementById("nameGroupA");
-    nameGroupB = document.getElementById("nameGroupB");
-    nameGroupC = document.getElementById("nameGroupC");
-    nameGroupD = document.getElementById("nameGroupD");
-
-    gameGroupA = document.getElementById("gameGroupA");
-    gameGroupB = document.getElementById("gameGroupB");
-    gameGroupC = document.getElementById("gameGroupC");
-    gameGroupD = document.getElementById("gameGroupD");
-
-    categoryGroupA = document.getElementById("categoryGroupA");
-    categoryGroupB = document.getElementById("categoryGroupB");
-    categoryGroupC = document.getElementById("categoryGroupC");
-    categoryGroupD = document.getElementById("categoryGroupD");
-
-    targetGroupA = document.getElementById("targetGroupA");
-    targetGroupB = document.getElementById("targetGroupB");
-    targetGroupC = document.getElementById("targetGroupC");
-    targetGroupD = document.getElementById("targetGroupD");
-
-    // limitGroupA = document.getElementById("limitGroupA");
-    // limitGroupB = document.getElementById("limitGroupB");
-    // limitGroupC = document.getElementById("limitGroupC");
-    // limitGroupD = document.getElementById("limitGroupD");
-
-    progress1 = document.getElementById("progress1");
-    progress2 = document.getElementById("progress2");
-    progress3 = document.getElementById("progress3");
-    progress4 = document.getElementById("progress4");
+    initElement('GroupA');
+    initElement('GroupB');
+    initElement('GroupC');
+    initElement('GroupD');
 }
 
-const iconGroupArep = nodecg.Replicant("iconGroupA");
-const iconGroupBrep = nodecg.Replicant("iconGroupB");
-const iconGroupCrep = nodecg.Replicant("iconGroupC");
-const iconGroupDrep = nodecg.Replicant("iconGroupD");
+function initElement(groupName) {
+    icon[groupName] = document.getElementById("icon" + groupName);
+    nameText[groupName] = document.getElementById("name" + groupName);
+    gameText[groupName] = document.getElementById("game" + groupName);
+    categoryText[groupName] = document.getElementById("category" + groupName);
+    targetText[groupName] = document.getElementById("target" + groupName);
+    // limitText[groupName] = document.getElementById("limit" + groupName);
+    progress[groupName] = document.getElementById("progress" + groupName);
+}
 
-const nameGroupArep = nodecg.Replicant("nameGroupA");
-const nameGroupBrep = nodecg.Replicant("nameGroupB");
-const nameGroupCrep = nodecg.Replicant("nameGroupC");
-const nameGroupDrep = nodecg.Replicant("nameGroupD");
+function initReplicant(groupName) {
+    iconRep[groupName] = nodecg.Replicant("icon" + groupName);
+    iconRep[groupName].on("change", newValue => { icon[groupName].src = newValue; });
+    nameTextRep[groupName] = nodecg.Replicant("name" + groupName);
+    nameTextRep[groupName].on("change", newValue => { nameText[groupName].innerText = newValue; });
+    gameTextRep[groupName] = nodecg.Replicant("game" + groupName);
+    gameTextRep[groupName].on("change", newValue => { gameText[groupName].innerText = newValue; });
+    categoryTextRep[groupName] = nodecg.Replicant("category" + groupName);
+    categoryTextRep[groupName].on("change", newValue => { categoryText[groupName].innerText = newValue; });
+    targetTextRep[groupName] = nodecg.Replicant("target" + groupName);
+    targetTextRep[groupName].on("change", newValue => { targetText[groupName].innerText = newValue; });
+    limitTextRep[groupName] = nodecg.Replicant("limit" + groupName);
+    limitTextRep[groupName].on("change", newValue => {
+        if (newValue != "NaN:aN:aN" || newValue == undefined) {
+            limitTime[groupName] = newValue;
+        }
+    });
+    currentTimeTextRep[groupName] = nodecg.Replicant("currentTimeText" + groupName);
+}
 
-const gameGroupArep = nodecg.Replicant("gameGroupA");
-const gameGroupBrep = nodecg.Replicant("gameGroupB");
-const gameGroupCrep = nodecg.Replicant("gameGroupC");
-const gameGroupDrep = nodecg.Replicant("gameGroupD");
+function startTimer(selestGroup) {
+    remainingTime[selestGroup] = getNowTime();
+    countDown[selestGroup] = setInterval(tryDecrement, 1000, selestGroup);
+}
 
-const categoryGroupArep = nodecg.Replicant("categoryGroupA");
-const categoryGroupBrep = nodecg.Replicant("categoryGroupB");
-const categoryGroupCrep = nodecg.Replicant("categoryGroupC");
-const categoryGroupDrep = nodecg.Replicant("categoryGroupD");
+function stopTimer(selestGroup) {
+    if (typeof countDown[selestGroup] !== 'undefined') {
+        clearInterval(countDown[selestGroup])
+    }
+}
 
-const targetGroupArep = nodecg.Replicant("targetGroupA");
-const targetGroupBrep = nodecg.Replicant("targetGroupB");
-const targetGroupCrep = nodecg.Replicant("targetGroupC");
-const targetGroupDrep = nodecg.Replicant("targetGroupD");
+function resetTimer(selestGroup) {
+    if (typeof countDown[selestGroup] !== 'undefined') {
+        clearInterval(countDown[selestGroup])
+    }
+    showTime[selestGroup] = limitTime[selestGroup];
+    currentTime[selestGroup] = formatSeconds(showTime[selestGroup]);
+    currentTimeTextRep[selestGroup].value = limitTime[selestGroup];
+    if (mainGroup == selestGroup) {
+        progress[selestGroup].style.marginTop = "0px";
+    } else {
+        progress[selestGroup].style.marginRight = "0px";
+    }
+}
 
-// const limitGroupArep = nodecg.Replicant("limitGroupA");
-// const limitGroupBrep = nodecg.Replicant("limitGroupB");
-// const limitGroupCrep = nodecg.Replicant("limitGroupC");
-// const limitGroupDrep = nodecg.Replicant("limitGroupD");
+function tryDecrement(selestGroup) {
+    if (currentTime[selestGroup] != 0) {
+        let nowTime = getNowTime();
+        let diffTime = nowTime - remainingTime[selestGroup];
+        if (diffTime < 1000) {
+            diffTime = 1000;
+        }
+        currentTime[selestGroup] = currentTime[selestGroup] - Math.floor(diffTime / 1000);
+    }
+    currentTimeTextRep[selestGroup].value = formatTime(currentTime[selestGroup]);
+    if (mainGroup == selestGroup) {
+        let margin = 670 - (670 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
+        progress[selestGroup].style.marginTop = margin + "px";
+    } else {
+        let margin = 550 - (550 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
+        progress[selestGroup].style.marginRight = margin + "px";
+    }
+    remainingTime[selestGroup] = getNowTime();
+}
 
-const progress1Rep = nodecg.Replicant("verticalGroupA");
-const progress2Rep = nodecg.Replicant("horizontalGroupB");
-const progress3Rep = nodecg.Replicant("horizontalGroupC");
-const progress4Rep = nodecg.Replicant("horizontalGroupA");
+function getNowTime() {
+    let remaining = new Date();
+    return remaining.getTime()
+}
 
-iconGroupArep.on("change", newValue => { iconGroupA.src = newValue; });
-iconGroupBrep.on("change", newValue => { iconGroupB.src = newValue; });
-iconGroupCrep.on("change", newValue => { iconGroupC.src = newValue; });
-iconGroupDrep.on("change", newValue => { iconGroupD.src = newValue; });
+function formatTime(currentTime) {
+    let hour = Math.floor(currentTime / 3600);
+    let min = Math.floor((currentTime % 3600) / 60);
+    let sec = Math.floor((currentTime % 3600) % 60);
+    return hour + ":" + ('00' + min).slice(-2) + ":" + ('00' + sec).slice(-2)
+}
 
-nameGroupArep.on("change", newValue => { nameGroupA.innerText = newValue; });
-nameGroupBrep.on("change", newValue => { nameGroupB.innerText = newValue; });
-nameGroupCrep.on("change", newValue => { nameGroupC.innerText = newValue; });
-nameGroupDrep.on("change", newValue => { nameGroupD.innerText = newValue; });
+function formatSeconds(currentTime) {
+    const timeParts = currentTime.split(':').map(Number);
+    return Math.floor(timeParts[0] * 3600) + Math.floor(timeParts[1] * 60) + Math.floor(timeParts[2])
+}
 
-gameGroupArep.on("change", newValue => { gameGroupA.innerText = newValue; });
-gameGroupBrep.on("change", newValue => { gameGroupB.innerText = newValue; });
-gameGroupCrep.on("change", newValue => { gameGroupC.innerText = newValue; });
-gameGroupDrep.on("change", newValue => { gameGroupD.innerText = newValue; });
-
-categoryGroupArep.on("change", newValue => { categoryGroupA.innerText = newValue; });
-categoryGroupBrep.on("change", newValue => { categoryGroupB.innerText = newValue; });
-categoryGroupCrep.on("change", newValue => { categoryGroupC.innerText = newValue; });
-categoryGroupDrep.on("change", newValue => { categoryGroupD.innerText = newValue; });
-
-targetGroupArep.on("change", newValue => { targetGroupA.innerText = newValue; });
-targetGroupBrep.on("change", newValue => { targetGroupB.innerText = newValue; });
-targetGroupCrep.on("change", newValue => { targetGroupC.innerText = newValue; });
-targetGroupDrep.on("change", newValue => { targetGroupD.innerText = newValue; });
-
-// limitGroupArep.on("change", newValue => {
-//     if (newValue != 0) {
-//         limitGroupA.innerText = newValue;
-//     } else {
-//         limitGroupA.innerText = "Time up!";
-//     }
-// });
-
-// limitGroupBrep.on("change", newValue => {
-//     if (newValue != 0) {
-//         limitGroupB.innerText = newValue;
-//     } else {
-//         limitGroupB.innerText = "Time up!";
-//     }
-// });
-
-// limitGroupCrep.on("change", newValue => {
-//     if (newValue != 0) {
-//         limitGroupC.innerText = newValue;
-//     } else {
-//         limitGroupC.innerText = "Time up!";
-//     }
-// });
-
-// limitGroupDrep.on("change", newValue => {
-//     if (newValue != 0) {
-//         limitGroupD.innerText = newValue;
-//     } else {
-//         limitGroupD.innerText = "Time up!";
-//     }
-// });
-
-progress1Rep.on("change", newValue => { progress1.style.marginTop = newValue + "px"; });
-progress2Rep.on("change", newValue => { progress2.style.marginRight = newValue + "px"; });
-progress3Rep.on("change", newValue => { progress3.style.marginRight = newValue + "px"; });
-progress4Rep.on("change", newValue => { progress4.style.marginRight = newValue + "px"; });
+nodecg.listenFor('startTimer', (newValue) => { startTimer(newValue) });
+nodecg.listenFor('stopTimer', (newValue) => { stopTimer(newValue) });
+nodecg.listenFor('resetTimer', (newValue) => { resetTimer(newValue) });
