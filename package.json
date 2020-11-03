@@ -64,7 +64,12 @@
 				"name": "runnerIcon",
 				"title": "走者アイコン",
 				"allowedTypes": ["jpg", "jpeg", "gif", "png"]
-			}
+            },
+            {
+                "name": "materials",
+                "title": "レイアウト用素材",
+                "allowedTypes": ["png"]
+            }
 		]
     }
 }
