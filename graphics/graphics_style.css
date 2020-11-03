@@ -81,19 +81,19 @@ body {
     margin-top: 0.05em;
 }
 
-#boxGroupA {
+#box1 {
     background-color: rgba(139, 0, 0, 0.7);
 }
 
-#boxGroupB {
+#box2 {
     background-color: rgba(0, 0, 139, 0.7);
 }
 
-#boxGroupC {
+#box3 {
     background-color: rgba(184, 135, 11, 0.7);
 }
 
-#boxGroupD {
+#box4 {
     background-color: rgba(0, 100, 0, 0.7);
 }
 
