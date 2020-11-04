@@ -101,10 +101,10 @@ function tryDecrement(selestGroup) {
     }
     currentTimeTextRep[selestGroup].value = formatTime(currentTime[selestGroup]);
     if (mainGroup == selestGroup) {
-        let margin = 670 - (670 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
+        let margin = 633 - (633 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
         progress[selestGroup].style.marginTop = margin + "px";
     } else {
-        let margin = 550 - (550 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
+        let margin = 571 - (571 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
         progress[selestGroup].style.marginRight = margin + "px";
     }
     remainingTime[selestGroup] = getNowTime();

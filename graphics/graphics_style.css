@@ -126,6 +126,7 @@ body {
 
 .progress {
     background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
 }
 
 .progress .mirrorId {    

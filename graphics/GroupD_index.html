@@ -1,57 +1,128 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="graphics_style.css">
-        <script type="text/javascript" rel="script" src="graphics_script.js"></script>
-    </head>
-    <body background="background.png">
-        <div id="box2">
-            <div class="nameColumn" id="nameGroupA"></div>
-            <img class="iconColumn" id="iconGroupA">
-            <div class="leftColumn">ゲーム名</div><div class="rightColumn" id="gameGroupA"></div>
-            <div class="leftColumn">カテゴリ</div><div class="rightColumn" id="categoryGroupA"></div>
-            <div class="leftColumn">目標タイム</div><div class="rightColumn" id="targetGroupA"></div>
-        </div>
 
-        <div id="box3">
-            <div class="nameColumn" id="nameGroupB"></div>
-            <img class="iconColumn" id="iconGroupB">
-            <div class="leftColumn">ゲーム名</div><div class="rightColumn" id="gameGroupB"></div>
-            <div class="leftColumn">カテゴリ</div><div class="rightColumn" id="categoryGroupB"></div>
-            <div class="leftColumn">目標タイム</div><div class="rightColumn" id="targetGroupB"></div>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="graphics_style.css">
+    <script type="text/javascript" rel="script" src="graphics_script.js"></script>
+</head>
 
-        <div id="box4">
-            <div class="nameColumn" id="nameGroupC"></div>
-            <img class="iconColumn" id="iconGroupC">
-            <div class="leftColumn">ゲーム名</div><div class="rightColumn" id="gameGroupC"></div>
-            <div class="leftColumn">カテゴリ</div><div class="rightColumn" id="categoryGroupC"></div>
-            <div class="leftColumn">目標タイム</div><div class="rightColumn" id="targetGroupC"></div>
+<body>
+    <div id="top" class="row">
+        <div id="sideBar">
+            <div id="box1" class="infoBox">
+                <div class="row runnerInfo">
+                    <div class="mirrorId">D</div>
+                    <img class="icon" id="iconGroupD">
+                    <span class="name" id="nameGroupD"></span>
+                </div>
+                <div class="row">
+                    <div class="label">ゲーム名</div>
+                    <div class="value" id="gameGroupD"></div>
+                </div>
+                <div class="row">
+                    <div class="label">カテゴリ</div>
+                    <div class="value" id="categoryGroupD"></div>
+                </div>
+                <div class="row">
+                    <div class="label">目標タイム</div>
+                    <div class="value" id="targetGroupD"></div>
+                </div>
+            </div>
+            <div id="title">
+                <img src="/assets/rttr_layouts/materials/trophy.png">
+                <span>Road to the Record</span>
+                <img src="/assets/rttr_layouts/materials/trophy.png">
+            </div>
+            <div id="box2" class="infoBox">
+                <div class="row runnerInfo">
+                    <div class="mirrorId">A</div>
+                    <img class="icon" id="iconGroupA">
+                    <span class="name" id="nameGroupA"></span>
+                </div>
+                <div class="row">
+                    <div class="label">ゲーム名</div>
+                    <div class="value" id="gameGroupA"></div>
+                </div>
+                <div class="row">
+                    <div class="label">カテゴリ</div>
+                    <div class="value" id="categoryGroupA"></div>
+                </div>
+                <div class="row">
+                    <div class="label">目標タイム</div>
+                    <div class="value" id="targetGroupA"></div>
+                </div>
+            </div>
+            <div id="box3" class="infoBox">
+                <div class="row runnerInfo">
+                    <div class="mirrorId">B</div>
+                    <img class="icon" id="iconGroupB">
+                    <span class="name" id="nameGroupB"></span>
+                </div>
+                <div class="row">
+                    <div class="label">ゲーム名</div>
+                    <div class="value" id="gameGroupB"></div>
+                </div>
+                <div class="row">
+                    <div class="label">カテゴリ</div>
+                    <div class="value" id="categoryGroupB"></div>
+                </div>
+                <div class="row">
+                    <div class="label">目標タイム</div>
+                    <div class="value" id="targetGroupB"></div>
+                </div>
+            </div>
+            <div id="box4" class="infoBox">
+                <div class="row runnerInfo">
+                    <div class="mirrorId">C</div>
+                    <img class="icon" id="iconGroupC">
+                    <span class="name" id="nameGroupC"></span>
+                </div>
+                <div class="row">
+                    <div class="label">ゲーム名</div>
+                    <div class="value" id="gameGroupC"></div>
+                </div>
+                <div class="row">
+                    <div class="label">カテゴリ</div>
+                    <div class="value" id="categoryGroupC"></div>
+                </div>
+                <div class="row">
+                    <div class="label">目標タイム</div>
+                    <div class="value" id="targetGroupC"></div>
+                </div>
+            </div>
         </div>
+        <div id="mainScreen">
+            <div id="progress1" class="progress">
+                <div class="mirrorId"><span>D</span></div>
+                <div id="remaining1" class="remaining"></div>
+            </div>
+            <div id="mainVideo" class="video"></div>
+        </div>
+    </div>
+    <div id="bottom" class="row">
+        <div id="subScreen1" class="subScreen">
+            <div class="video sub"></div>
+            <div id="progress2" class="progress">
+                <div class="mirrorId"><span>A</span></div>
+                <div id="remaining2" class="remaining"></div>
+            </div>
+        </div>
+        <div id="subScreen2" class="subScreen">
+            <div class="video sub"></div>
+            <div id="progress3" class="progress">
+                <div class="mirrorId"><span>B</span></div>
+                <div id="remaining3" class="remaining"></div>
+            </div>
+        </div>
+        <div id="subScreen3" class="subScreen">
+            <div class="video sub"></div>
+            <div id="progress4" class="progress">
+                <div class="mirrorId"><span>D</span></div>
+                <div id="remaining4" class="remaining"></div>
+            </div>
+        </div>
+    </div>
+</body>
 
-        <div id="box1">
-            <div class="nameColumn" id="nameGroupD"></div>
-            <img class="iconColumn" id="iconGroupD">
-            <div class="leftColumn">ゲーム名</div><div class="rightColumn" id="gameGroupD"></div>
-            <div class="leftColumn">カテゴリ</div><div class="rightColumn" id="categoryGroupD"></div>
-            <div class="leftColumn">目標タイム</div><div class="rightColumn" id="targetGroupD"></div>
-        </div>
-
-        <div class="progress2">
-            <div id="progressGroupA" class="progress"></div>
-        </div>
-
-        <div class="progress3">
-            <div id="progressGroupB" class="progress"></div>
-        </div>
-
-        <div class="progress4">
-            <div id="progressGroupC" class="progress"></div>
-        </div>
-
-        <div class="progress1">
-            <div id="progressGroupD" class="progress"></div>
-        </div>
-    </body>
 </html>
