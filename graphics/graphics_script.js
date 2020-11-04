@@ -84,9 +84,9 @@ function resetTimer(selestGroup) {
     currentTime[selestGroup] = formatSeconds(showTime[selestGroup]);
     currentTimeTextRep[selestGroup].value = limitTime[selestGroup];
     if (mainGroup == selestGroup) {
-        progress[selestGroup].style.marginTop = "0px";
+        progress[selestGroup].style.marginTop = 58 + "px";
     } else {
-        progress[selestGroup].style.marginRight = "0px";
+        progress[selestGroup].style.marginRight = 0 + "px";
     }
 }
 
@@ -101,7 +101,7 @@ function tryDecrement(selestGroup) {
     }
     currentTimeTextRep[selestGroup].value = formatTime(currentTime[selestGroup]);
     if (mainGroup == selestGroup) {
-        let margin = 633 - (633 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
+        let margin = 691 - (633 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
         progress[selestGroup].style.marginTop = margin + "px";
     } else {
         let margin = 571 - (571 * currentTime[selestGroup] / formatSeconds(limitTime[selestGroup]));
