@@ -1,6 +1,5 @@
 'use strict';
 
-// const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const fetch = require('node-fetch');
 const nodecgApiContext = require("./util/nodecg-api-context");
 const nodecg = nodecgApiContext.get();
@@ -8,7 +7,6 @@ const nodecg = nodecgApiContext.get();
 const assetsPath = "/assets/rttr_layouts/runnerIcon/"
 
 const currentRunner = {};
-const timerRunning = {};
 
 const iconRep = {};
 const nameRep = {};
@@ -17,7 +15,6 @@ const categoryRep = {};
 const targetRep = {};
 const limitRep = {};
 
-const request = {};
 const reqUrl = {};
 const data = {};
 
@@ -27,22 +24,8 @@ initData('GroupC');
 initData('GroupD');
 
 function initData(groupName) {
-    nodecg.log.info('infoKeeping: initData (' + groupName + ')');
     currentRunner[groupName] = 0;
     reqUrl[groupName] = "https://script.google.com/macros/s/AKfycbyE6KLZR66q7SF6sLb3BZM2YLjM7N7yrVdLBjNRgK69Z1fohv-U/exec?sheet=" + groupName;
-    // request[groupName] = new XMLHttpRequest();
-    // request[groupName].onreadystatechange = function () {
-    //     if(this.readyState == 4 && this.status == 200){
-    //         console.log(this.responseText);
-    //     }
-    // }
-    // request[groupName].onload = function () {
-    //     nodecg.log.info('infoKeeping: request[' + groupName + '].onload');
-    //     // nodecg.log.info(this.responseText);
-    //     data[groupName] = request[groupName].response;
-    //     setText(groupName, data[groupName], currentRunner[groupName]);
-    //     nodecg.sendMessage("reloadButtonChange" + selestGroup, true);
-    // };
     requestReload(groupName);
 }
 
@@ -52,7 +35,6 @@ initReplicant('GroupC');
 initReplicant('GroupD');
 
 function initReplicant(groupName) {
-    nodecg.log.info('infoKeeping: initReplicant (' + groupName + ')');
     nameRep[groupName] = nodecg.Replicant("name" + groupName);
     gameRep[groupName] = nodecg.Replicant("game" + groupName);
     categoryRep[groupName] = nodecg.Replicant("category" + groupName);
@@ -71,7 +53,6 @@ module.exports.reload = reload;
 function requestReload(groupName) {
     fetch(reqUrl[groupName])
 		.then(function(response) {
-			nodecg.log.info("status=" + response.status);
 			return response.json();
 		})
 		.then(function(orgData) {
@@ -79,14 +60,10 @@ function requestReload(groupName) {
             setText(groupName, data[groupName], currentRunner[groupName]);
             buttomChange(groupName, data[groupName], currentRunner[groupName]);
             nodecg.sendMessage("reloadButtonChange" + groupName, false);
-		})
-		.catch(function(err1) {
-			nodecg.log.info("err=" + err1);
 		});
 }
 
 function setText(groupName, data, currentRunner) {
-    nodecg.log.info('infoKeeping: setText (groupName=' + groupName + ' data=' + data + ' currentRunner=' + currentRunner + ')');
     iconRep[groupName].value = assetsPath + data[currentRunner].icon;
     nameRep[groupName].value = data[currentRunner].runner_name;
     gameRep[groupName].value = data[currentRunner].game_title;

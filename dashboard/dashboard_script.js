@@ -41,14 +41,10 @@ function reload() {
 }
 
 function prevRunner() {
-    timerStop();
-    timerReset();
     nodecg.sendMessage("prevRunner", currentGroup);
 }
 
 function nextRunner() {
-    timerStop();
-    timerReset();
     nodecg.sendMessage("nextRunner", currentGroup);
 }
 

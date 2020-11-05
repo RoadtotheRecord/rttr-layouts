@@ -19,7 +19,6 @@ initReplicant('GroupC');
 initReplicant('GroupD');
 
 function initReplicant(groupName) {
-    nodecg.log.info('timeKeeping: initReplicant (' + groupName + ')');
     limitTextRep[groupName] = nodecg.Replicant("limit" + groupName);
     limitTextRep[groupName].on("change", newValue => { limitTime[groupName] = newValue; });
     currentTimeTextRep[groupName] = nodecg.Replicant("currentTimeText" + groupName);
