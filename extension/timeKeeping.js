@@ -12,6 +12,7 @@ const limitTextRep = {};
 const currentTimeTextRep = {};
 const marginTopRep = {};
 const marginRightRep = {};
+const runningTimerRep = {};
 
 initReplicant('GroupA');
 initReplicant('GroupB');
@@ -24,6 +25,8 @@ function initReplicant(groupName) {
     currentTimeTextRep[groupName] = nodecg.Replicant("currentTimeText" + groupName);
     marginTopRep[groupName] = nodecg.Replicant("marginTop" + groupName);
     marginRightRep[groupName] = nodecg.Replicant("marginRight" + groupName);
+    runningTimerRep[groupName] = nodecg.Replicant("runningTimer" + groupName);
+    runningTimerRep[groupName].value = false;
 }
 
 function start(selestGroup) {
@@ -31,7 +34,7 @@ function start(selestGroup) {
     nodecg.sendMessage("startButtonChange" + selestGroup, true);
     nodecg.sendMessage("stopButtonChange" + selestGroup, false);
     nodecg.sendMessage("resetButtonChange" + selestGroup, true);
-    // buttomChange();
+    runningTimerRep[selestGroup].value = true;
     remainingTime[selestGroup] = getNowTime();
     countDown[selestGroup] = setInterval(tryDecrement, 1000, selestGroup);
 }
@@ -42,6 +45,7 @@ function pause(selestGroup) {
     nodecg.sendMessage("startButtonChange" + selestGroup, false);
     nodecg.sendMessage("stopButtonChange" + selestGroup, true);
     nodecg.sendMessage("resetButtonChange" + selestGroup, false);
+    runningTimerRep[selestGroup].value = false;
     if (typeof countDown[selestGroup] !== 'undefined') {
         clearInterval(countDown[selestGroup])
     }
@@ -52,7 +56,7 @@ function reset(selestGroup) {
     nodecg.log.info('timeKeeping: reset (' + selestGroup + ')');
     nodecg.sendMessage("startButtonChange" + selestGroup, false);
     nodecg.sendMessage("stopButtonChange" + selestGroup, true);
-    // buttomChange();
+    runningTimerRep[selestGroup].value = false;
     if (typeof countDown[selestGroup] !== 'undefined') {
         clearInterval(countDown[selestGroup])
     }

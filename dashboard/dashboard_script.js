@@ -35,6 +35,18 @@ currentTimeTextRep.on("change", newValue => {
         currentText.innerText = newValue;
     }
 });
+const runningTimerRep = nodecg.Replicant("runningTimer" + currentGroup);
+runningTimerRep.on("change", newValue => {
+    if (newValue) {
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        resetButton.disabled = true;
+    } else {
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        resetButton.disabled = false;
+    }
+});
 
 function reload() {
     nodecg.sendMessage("reloadRunner", currentGroup);
