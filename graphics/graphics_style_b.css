@@ -1,0 +1,31 @@
+#box1 {
+    background-color: rgba(0, 0, 139, 0.7);
+}
+
+#box2 {
+    background-color: rgba(139, 0, 0, 0.7);
+}
+
+#box3 {
+    background-color: rgba(184, 135, 11, 0.7);
+}
+
+#box4 {
+    background-color: rgba(0, 100, 0, 0.7);
+}
+
+#progress1 .mirrorId {
+    background-color: darkblue;
+}
+
+#progress2 .mirrorId {
+    background-color: darkred;
+}
+
+#progress3 .mirrorId {
+    background-color: darkgoldenrod;
+}
+
+#progress4 .mirrorId {
+    background-color: darkgreen;
+}
