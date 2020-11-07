@@ -89,22 +89,6 @@ body {
     margin-top: 0.05em;
 }
 
-#box1 {
-    background-color: rgba(139, 0, 0, 0.7);
-}
-
-#box2 {
-    background-color: rgba(0, 0, 139, 0.7);
-}
-
-#box3 {
-    background-color: rgba(184, 135, 11, 0.7);
-}
-
-#box4 {
-    background-color: rgba(0, 100, 0, 0.7);
-}
-
 #mainScreen {
     display: flex;
 }
@@ -146,7 +130,6 @@ body {
 #progress1 .mirrorId {
     width: calc(1920px * 0.03);
     height: calc(1920px * 0.03);
-    background-color: darkred;
     font-size: 42px;
 }
 
@@ -154,18 +137,6 @@ body {
     width: calc(1080px * 0.04);
     height: calc(1080px * 0.04);
     font-size: 32px;
-}
-
-#progress2 .mirrorId {
-    background-color: darkblue;
-}
-
-#progress3 .mirrorId {
-    background-color: darkgoldenrod;
-}
-
-#progress4 .mirrorId {
-    background-color: darkgreen;
 }
 
 .progress .remaining {
