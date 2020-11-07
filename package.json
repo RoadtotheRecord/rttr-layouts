@@ -60,17 +60,20 @@
                 "height": 1080
             }
         ],
-		"assetCategories": [
-			{
-				"name": "runnerIcon",
-				"title": "走者アイコン",
-				"allowedTypes": ["jpg", "jpeg", "gif", "png"]
+        "assetCategories": [
+            {
+                "name": "runnerIcon",
+                "title": "走者アイコン",
+                "allowedTypes": ["jpg", "jpeg", "gif", "png"]
             },
             {
                 "name": "materials",
                 "title": "レイアウト用素材",
                 "allowedTypes": ["png"]
             }
-		]
+        ]
+    },
+    "dependencies": {
+        "node-fetch": "^2.6.1"
     }
 }
