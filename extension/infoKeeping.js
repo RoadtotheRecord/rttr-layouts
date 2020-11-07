@@ -25,7 +25,7 @@ initData('GroupD');
 
 function initData(groupName) {
     currentRunner[groupName] = 0;
-    reqUrl[groupName] = "https://script.google.com/macros/s/AKfycbyE6KLZR66q7SF6sLb3BZM2YLjM7N7yrVdLBjNRgK69Z1fohv-U/exec?sheet=" + groupName;
+    reqUrl[groupName] = "https://script.google.com/macros/s/" + nodecg.bundleConfig.requestURL + "/exec?sheet=" + groupName;
     requestReload(groupName);
 }
 
@@ -44,7 +44,6 @@ function initReplicant(groupName) {
 }
 
 function reload(selestGroup) {
-    nodecg.log.info('infoKeeping: reload (' + selestGroup + ')');
     nodecg.sendMessage("reloadButtonChange" + selestGroup, true);
     requestReload(selestGroup);
 }
@@ -73,7 +72,6 @@ function setText(groupName, data, currentRunner) {
 }
 
 function prev(selestGroup) {
-    nodecg.log.info('infoKeeping: prev (' + selestGroup + ')');
     if (currentRunner[selestGroup] != 0) {
         currentRunner[selestGroup]--;
     }
@@ -83,7 +81,6 @@ function prev(selestGroup) {
 module.exports.prev = prev;
 
 function next(selestGroup) {
-    nodecg.log.info('infoKeeping: next (' + selestGroup + ')');
     if (currentRunner[selestGroup] != data[selestGroup].length - 1) {
         currentRunner[selestGroup]++;
     }

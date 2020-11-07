@@ -30,7 +30,6 @@ function initReplicant(groupName) {
 }
 
 function start(selestGroup) {
-    nodecg.log.info('timeKeeping: start (' + selestGroup + ')');
     nodecg.sendMessage("startButtonChange" + selestGroup, true);
     nodecg.sendMessage("stopButtonChange" + selestGroup, false);
     nodecg.sendMessage("resetButtonChange" + selestGroup, true);
@@ -41,7 +40,6 @@ function start(selestGroup) {
 module.exports.start = start;
 
 function pause(selestGroup) {
-    nodecg.log.info('timeKeeping: pause (' + selestGroup + ')');
     nodecg.sendMessage("startButtonChange" + selestGroup, false);
     nodecg.sendMessage("stopButtonChange" + selestGroup, true);
     nodecg.sendMessage("resetButtonChange" + selestGroup, false);
@@ -53,7 +51,6 @@ function pause(selestGroup) {
 module.exports.pause = pause;
 
 function reset(selestGroup) {
-    nodecg.log.info('timeKeeping: reset (' + selestGroup + ')');
     nodecg.sendMessage("startButtonChange" + selestGroup, false);
     nodecg.sendMessage("stopButtonChange" + selestGroup, true);
     runningTimerRep[selestGroup].value = false;
