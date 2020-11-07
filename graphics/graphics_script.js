@@ -3,6 +3,7 @@ const mainGroup = str.slice(0, -11);
 
 const icon = {};
 const nameText = {};
+const currentTimeText = {};
 const gameText = {};
 const categoryText = {};
 const targetText = {};
@@ -11,6 +12,7 @@ const progress = {};
 
 const iconRep = {};
 const nameTextRep = {};
+const currentTimeTextRep = {};
 const gameTextRep = {};
 const categoryTextRep = {};
 const targetTextRep = {};
@@ -37,6 +39,7 @@ window.onload = function () {
 function initElement(groupName) {
     icon[groupName] = document.getElementById("icon" + groupName);
     nameText[groupName] = document.getElementById("name" + groupName);
+    currentTimeText[groupName] = document.getElementById("currentTime" + groupName);
     gameText[groupName] = document.getElementById("game" + groupName);
     categoryText[groupName] = document.getElementById("category" + groupName);
     targetText[groupName] = document.getElementById("target" + groupName);
@@ -48,6 +51,8 @@ function initReplicant(groupName) {
     iconRep[groupName].on("change", newValue => { icon[groupName].src = newValue; });
     nameTextRep[groupName] = nodecg.Replicant("name" + groupName);
     nameTextRep[groupName].on("change", newValue => { nameText[groupName].innerText = newValue; });
+    currentTimeTextRep[groupName] = nodecg.Replicant("currentTimeText" + groupName);
+    currentTimeTextRep[groupName].on("change", newValue => { currentTimeText[groupName].innerText = newValue; });
     gameTextRep[groupName] = nodecg.Replicant("game" + groupName);
     gameTextRep[groupName].on("change", newValue => { gameText[groupName].innerText = newValue; });
     categoryTextRep[groupName] = nodecg.Replicant("category" + groupName);
@@ -71,6 +76,7 @@ function initReplicant(groupName) {
 function loadReplicant(groupName) {
     nodecg.readReplicant("icon" + groupName, value => { icon[groupName].src = value; });
     nodecg.readReplicant("name" + groupName, value => { nameText[groupName].innerText = value; });
+    nodecg.readReplicant("currentTimeText" + groupName, value => { currentTimeText[groupName].innerText = value; });
     nodecg.readReplicant("game" + groupName, value => { gameText[groupName].innerText = value; });
     nodecg.readReplicant("category" + groupName, value => { categoryText[groupName].innerText = value; });
     nodecg.readReplicant("target" + groupName, value => { targetText[groupName].innerText = value; });
