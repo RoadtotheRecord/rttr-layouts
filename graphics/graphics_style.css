@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&family=Oswald:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap');
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
@@ -36,10 +37,17 @@ body {
 }
 
 .name {
-    width: 100%;
     font-size: 1.5em;
     margin-left: 0.5em;
     margin-top: -0.2em;
+}
+
+.currentTime {
+    margin-left: auto;
+    font-family: 'Inconsolata', monospace;
+    font-size: 2.4em;
+    margin-top: -0.3em;
+    color: rgba(255, 255, 255, 0.7)
 }
 
 .mirrorId, .icon {
@@ -73,7 +81,7 @@ body {
     line-height: 1em;
     text-align: center;
     color: white;
-    opacity: 40%;
+    opacity: 0.4;
 }
 
 #title img {
@@ -132,7 +140,7 @@ body {
 .progress .mirrorId {    
     position: absolute;
     color: white;
-    opacity: 80%;
+    opacity: 0.8;
 }
 
 #progress1 .mirrorId {
