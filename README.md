@@ -16,9 +16,24 @@ NodeCGにアクセスして空のダッシュボードが表示されたらOKで
 
 NodeCGのインストールが完了したら、プロジェクトをダウンロードします。
 ```
-cd bundles/bingo-layout
+cd bundles/rttr_layouts
 git clone https://github.com/gunimus/rttr_layouts.git
+npm install
 cd ../..
-node index.js
 ```
 
+プロジェクトをダウンロードしたらcfgフォルダに「rttr_layouts.json」を作成します。
+```
+cd cfg
+// 以下を基に「rttr_layouts.json」を作成
+{
+    "requestURL": "GASアプリのURL"
+}
+// 「rttr_layouts.json」を保存
+cd ..
+```
+
+jsonファイルを作成したら起動できます！
+```
+node index.js
+```
