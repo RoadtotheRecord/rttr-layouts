@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nodecg:
+    image: gunimus/rttr-layouts
+    build: 
+      context: .
+    volumes:
+      - ./dashboard:/app/nodecg/bundles/rttr_layouts/dashboard
+      - ./extension:/app/nodecg/bundles/rttr_layouts/extension
+      - ./graphics:/app/nodecg/bundles/rttr_layouts/graphics
+      - ./cfg:/app/nodecg/cfg
+      - ./nodecg/db:/app/nodecg/db
+      - ./nodecg/logs:/app/nodecg/logs
+      - ./nodecg/assets:/app/nodecg/assets
+    ports: 
+      - 9091:9090

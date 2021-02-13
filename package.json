@@ -1,7 +1,7 @@
 {
     "name": "rttr_layouts",
     "version": "1.0.0",
-    "description": "",
+    "description": "NodeCG layouts for Road to the Record",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,11 @@
     "author": {
         "name": "gunimus",
         "email": "guminus@overspec.net"
+    },
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+git@github.com:gunimus/rttr_layouts.git"
     },
     "nodecg": {
         "compatibleRange": "^1.0.0",
