@@ -1,52 +1,49 @@
-window.onload = function () {
-    const nameText = document.getElementById("nameText");
-    const gameText = document.getElementById("gameText");
-    const categoryText = document.getElementById("categoryText");
-    const targetText = document.getElementById("targetText");
-    const limitText = document.getElementById("limitText");
-    const currentText = document.getElementById("currentText");
-    const reloadButton = document.getElementById("reloadButton");
-    const prevButton = document.getElementById("prevButton");
-    const nextButton = document.getElementById("nextButton");
-    const startButton = document.getElementById("startButton");
-    const stopButton = document.getElementById("stopButton");
-    const iconImage = document.getElementById("iconImage");
-    requestReload();
-}
-
 const str = window.location.href.split('/').pop();
 const currentGroup = str.slice(0, -5)
 
-const iconRep = nodecg.Replicant("icon" + currentGroup);
-iconRep.on("change", newValue => { iconImage.src = newValue; });
-const nameRep = nodecg.Replicant("name" + currentGroup);
-nameRep.on("change", newValue => { nameText.innerText = newValue; });
-const gameRep = nodecg.Replicant("game" + currentGroup);
-gameRep.on("change", newValue => { gameText.innerText = newValue; });
-const categoryRep = nodecg.Replicant("category" + currentGroup);
-categoryRep.on("change", newValue => { categoryText.innerText = newValue; });
-const targetRep = nodecg.Replicant("target" + currentGroup);
-targetRep.on("change", newValue => { targetText.innerText = newValue; });
-const limitRep = nodecg.Replicant("limit" + currentGroup);
-limitRep.on("change", newValue => { limitText.innerText = newValue; });
-const currentTimeTextRep = nodecg.Replicant("currentTimeText" + currentGroup);
-currentTimeTextRep.on("change", newValue => {
-    if (newValue != "NaN:aN:aN") {
-        currentText.innerText = newValue;
+window.onload = function () {
+    nodecg.Replicant("icon" + currentGroup).on("change", newValue => { iconImage.src = newValue; });
+    nodecg.Replicant("name" + currentGroup).on("change", newValue => { nameText.innerText = newValue; });
+    nodecg.Replicant("game" + currentGroup).on("change", newValue => { gameText.innerText = newValue; });
+    nodecg.Replicant("category" + currentGroup).on("change", newValue => { categoryText.innerText = newValue; });
+    nodecg.Replicant("console" + currentGroup).on("change", newValue => { consoleText.innerText = newValue; });
+    nodecg.Replicant("personal" + currentGroup).on("change", newValue => { personalText.innerText = newValue; });
+    nodecg.Replicant("target" + currentGroup).on("change", newValue => { targetText.innerText = newValue; });
+    nodecg.Replicant("limit" + currentGroup).on("change", newValue => { limitText.innerText = newValue; });
+    nodecg.Replicant("twitter" + currentGroup).on("change", newValue => { twitterText.innerText = newValue; });
+    nodecg.Replicant("stream" + currentGroup).on("change", newValue => { streamText.innerText = newValue; });
+    nodecg.Replicant("currentTimeText" + currentGroup).on("change", newValue => {
+        if (newValue != "NaN:aN:aN") {
+            currentText.innerText = newValue;
+        }
+    });
+    nodecg.Replicant("runningTimer" + currentGroup).on("change", newValue => {
+        if (newValue) {
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            resetButton.disabled = true;
+        } else {
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            resetButton.disabled = false;
+        }
+    });
+    const canvas = document.getElementById('mainBackGround');
+    if (canvas == null) {
+        return false;
     }
-});
-const runningTimerRep = nodecg.Replicant("runningTimer" + currentGroup);
-runningTimerRep.on("change", newValue => {
-    if (newValue) {
-        startButton.disabled = true;
-        stopButton.disabled = false;
-        resetButton.disabled = true;
-    } else {
-        startButton.disabled = false;
-        stopButton.disabled = true;
-        resetButton.disabled = false;
-    }
-});
+    const context = canvas.getContext('2d');
+
+    const image = new Image();
+    image.onload = function() {
+        context.drawImage(image, 0, 0);
+        context.globalCompositeOperation = 'xor';
+        context.fillRect(490, 10, 1420, 790);
+        context.fillRect(10, 10, 470, 790);
+        context.fill();
+    };
+    image.src = '/assets/rttr_layouts/materials/bg.png';
+}
 
 function reload() {
     nodecg.sendMessage("reloadRunner", currentGroup);

@@ -12,7 +12,11 @@ const iconRep = {};
 const nameRep = {};
 const gameRep = {};
 const categoryRep = {};
+const consoleRep = {};
+const personalRep = {};
 const targetRep = {};
+const twitterRep = {};
+const streamRep = {};
 const limitRep = {};
 
 const reqUrl = {};
@@ -21,7 +25,6 @@ const data = {};
 initData('GroupA');
 initData('GroupB');
 initData('GroupC');
-initData('GroupD');
 
 function initData(groupName) {
     currentRunner[groupName] = 0;
@@ -32,13 +35,16 @@ function initData(groupName) {
 initReplicant('GroupA');
 initReplicant('GroupB');
 initReplicant('GroupC');
-initReplicant('GroupD');
 
 function initReplicant(groupName) {
     nameRep[groupName] = nodecg.Replicant("name" + groupName);
     gameRep[groupName] = nodecg.Replicant("game" + groupName);
     categoryRep[groupName] = nodecg.Replicant("category" + groupName);
+    consoleRep[groupName] = nodecg.Replicant("console" + groupName);
+    personalRep[groupName] = nodecg.Replicant("personal" + groupName);
     targetRep[groupName] = nodecg.Replicant("target" + groupName);
+    twitterRep[groupName] = nodecg.Replicant("twitter" + groupName);
+    streamRep[groupName] = nodecg.Replicant("stream" + groupName);
     limitRep[groupName] = nodecg.Replicant("limit" + groupName);
     iconRep[groupName] = nodecg.Replicant("icon" + groupName);
 }
@@ -67,7 +73,11 @@ function setText(groupName, data, currentRunner) {
     nameRep[groupName].value = data[currentRunner].runner_name;
     gameRep[groupName].value = data[currentRunner].game_title;
     categoryRep[groupName].value = data[currentRunner].category;
+    consoleRep[groupName].value = data[currentRunner].game_console;
+    personalRep[groupName].value = data[currentRunner].personal_best;
     targetRep[groupName].value = data[currentRunner].target_time;
+    twitterRep[groupName].value = data[currentRunner].twitter;
+    streamRep[groupName].value = data[currentRunner].stream_link;
     limitRep[groupName].value = data[currentRunner].limit_time;
 }
 

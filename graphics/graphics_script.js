@@ -6,34 +6,26 @@ const nameText = {};
 const currentTimeText = {};
 const gameText = {};
 const categoryText = {};
+const consoleText = {};
+const personalText = {};
 const targetText = {};
+const twitterText = {};
+const streamText = {};
 const limitText = {};
 const progress = {};
-
-const iconRep = {};
-const nameTextRep = {};
-const currentTimeTextRep = {};
-const gameTextRep = {};
-const categoryTextRep = {};
-const targetTextRep = {};
-const marginTopRep = {};
-const marginRightRep = {};
 
 window.onload = function () {
     initElement('GroupA');
     initElement('GroupB');
     initElement('GroupC');
-    initElement('GroupD');
 
     initReplicant('GroupA');
     initReplicant('GroupB');
     initReplicant('GroupC');
-    initReplicant('GroupD');
 
     loadReplicant('GroupA');
     loadReplicant('GroupB');
     loadReplicant('GroupC');
-    loadReplicant('GroupD');
 }
 
 function initElement(groupName) {
@@ -42,31 +34,31 @@ function initElement(groupName) {
     currentTimeText[groupName] = document.getElementById("currentTime" + groupName);
     gameText[groupName] = document.getElementById("game" + groupName);
     categoryText[groupName] = document.getElementById("category" + groupName);
+    consoleText[groupName] = document.getElementById("console" + groupName);
+    personalText[groupName] = document.getElementById("personal" + groupName);
     targetText[groupName] = document.getElementById("target" + groupName);
+    twitterText[groupName] = document.getElementById("twitter" + groupName);
+    streamText[groupName] = document.getElementById("stream" + groupName);
     progress[groupName] = document.getElementById("progress" + groupName);
 }
 
 function initReplicant(groupName) {
-    iconRep[groupName] = nodecg.Replicant("icon" + groupName);
-    iconRep[groupName].on("change", newValue => { icon[groupName].src = newValue; });
-    nameTextRep[groupName] = nodecg.Replicant("name" + groupName);
-    nameTextRep[groupName].on("change", newValue => { nameText[groupName].innerText = newValue; });
-    currentTimeTextRep[groupName] = nodecg.Replicant("currentTimeText" + groupName);
-    currentTimeTextRep[groupName].on("change", newValue => { currentTimeText[groupName].innerText = newValue; });
-    gameTextRep[groupName] = nodecg.Replicant("game" + groupName);
-    gameTextRep[groupName].on("change", newValue => { gameText[groupName].innerText = newValue; });
-    categoryTextRep[groupName] = nodecg.Replicant("category" + groupName);
-    categoryTextRep[groupName].on("change", newValue => { categoryText[groupName].innerText = newValue; });
-    targetTextRep[groupName] = nodecg.Replicant("target" + groupName);
-    targetTextRep[groupName].on("change", newValue => { targetText[groupName].innerText = newValue; });
-    marginTopRep[groupName] = nodecg.Replicant("marginTop" + groupName);
-    marginTopRep[groupName].on("change", newValue => {
+    nodecg.Replicant("icon" + groupName).on("change", newValue => { icon[groupName].src = newValue; });
+    nodecg.Replicant("name" + groupName).on("change", newValue => { nameText[groupName].innerText = newValue; });
+    nodecg.Replicant("currentTimeText" + groupName).on("change", newValue => { currentTimeText[groupName].innerText = newValue; });
+    nodecg.Replicant("game" + groupName).on("change", newValue => { gameText[groupName].innerText = newValue; });
+    nodecg.Replicant("category" + groupName).on("change", newValue => { categoryText[groupName].innerText = newValue; });
+    nodecg.Replicant("console" + groupName).on("change", newValue => { consoleText[groupName].innerText = newValue; });
+    nodecg.Replicant("personal" + groupName).on("change", newValue => { personalText[groupName].innerText = newValue; });
+    nodecg.Replicant("target" + groupName).on("change", newValue => { targetText[groupName].innerText = newValue; });
+    nodecg.Replicant("twitter" + groupName).on("change", newValue => { twitterText[groupName].innerText = newValue; });
+    nodecg.Replicant("stream" + groupName).on("change", newValue => { streamText[groupName].innerText = newValue; });
+    nodecg.Replicant("marginTop" + groupName).on("change", newValue => {
         if (mainGroup == groupName) {
             progress[groupName].style.marginTop = newValue;
         }
     });
-    marginRightRep[groupName] = nodecg.Replicant("marginRight" + groupName);
-    marginRightRep[groupName].on("change", newValue => {
+    nodecg.Replicant("marginRight" + groupName).on("change", newValue => {
         if (mainGroup != groupName) {
             progress[groupName].style.marginRight = newValue;
         }
@@ -79,7 +71,11 @@ function loadReplicant(groupName) {
     nodecg.readReplicant("currentTimeText" + groupName, value => { currentTimeText[groupName].innerText = value; });
     nodecg.readReplicant("game" + groupName, value => { gameText[groupName].innerText = value; });
     nodecg.readReplicant("category" + groupName, value => { categoryText[groupName].innerText = value; });
+    nodecg.readReplicant("console" + groupName, value => { consoleText[groupName].innerText = value; });
+    nodecg.readReplicant("personal" + groupName, value => { personalText[groupName].innerText = value; });
     nodecg.readReplicant("target" + groupName, value => { targetText[groupName].innerText = value; });
+    nodecg.readReplicant("twitter" + groupName, value => { twitterText[groupName].innerText = value; });
+    nodecg.readReplicant("stream" + groupName, value => { streamText[groupName].innerText = value; });
     nodecg.readReplicant("marginTop" + groupName, value => {
         if (mainGroup == groupName) {
             progress[groupName].style.marginTop = value;
