@@ -15,6 +15,19 @@ const limitText = {};
 const progress = {};
 
 window.onload = function () {
+    const canvas = document.getElementById('mainBackGround');
+    const context = canvas.getContext('2d');
+    const image = new Image();
+    image.onload = function() {
+        context.drawImage(image, 0, 0);
+        context.globalCompositeOperation = 'xor';
+        context.fillRect(1920 * 0.36, 0, 1920 * 0.64, 1080 * 0.64);
+        context.fillRect(1920 * 0.33, 1080 * 0.64, 1920 * 0.32, 1080 * 0.32);
+        context.fillRect(1920 * 0.68, 1080 * 0.64, 1920 * 0.32, 1080 * 0.32);
+        context.fill();
+    };
+    image.src = '/assets/rttr_layouts/materials/bg.png';
+
     initElement('GroupA');
     initElement('GroupB');
     initElement('GroupC');
