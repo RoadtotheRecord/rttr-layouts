@@ -17,7 +17,6 @@ const runningTimerRep = {};
 initReplicant('GroupA');
 initReplicant('GroupB');
 initReplicant('GroupC');
-initReplicant('GroupD');
 
 function initReplicant(groupName) {
     limitTextRep[groupName] = nodecg.Replicant("limit" + groupName);

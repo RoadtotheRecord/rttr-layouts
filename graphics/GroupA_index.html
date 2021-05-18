@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <div id="top" class="row">
+    <canvas id="mainBackGround" width="1920" height="1080"></canvas>
+    <div class="wrapper">
         <div id="sideBar">
             <div id="box1" class="infoBox">
                 <div class="row runnerInfo">
@@ -27,8 +28,24 @@
                     <div class="value" id="categoryGroupA"></div>
                 </div>
                 <div class="row">
+                    <div class="label">使用ハード</div>
+                    <div class="value" id="consoleGroupA"></div>
+                </div>
+                <div class="row">
+                    <div class="label">PBタイム</div>
+                    <div class="value" id="personalGroupA"></div>
+                </div>
+                <div class="row">
                     <div class="label">目標タイム</div>
                     <div class="value" id="targetGroupA"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Twitter</div>
+                    <div class="value" id="twitterGroupA"></div>
+                </div>
+                <div class="row">
+                    <div class="label">配信先</div>
+                    <div class="value" id="streamGroupA"></div>
                 </div>
             </div>
             <div id="title">
@@ -52,8 +69,24 @@
                     <div class="value" id="categoryGroupB"></div>
                 </div>
                 <div class="row">
+                    <div class="label">使用ハード</div>
+                    <div class="value" id="consoleGroupB"></div>
+                </div>
+                <div class="row">
+                    <div class="label">PBタイム</div>
+                    <div class="value" id="personalGroupB"></div>
+                </div>
+                <div class="row">
                     <div class="label">目標タイム</div>
                     <div class="value" id="targetGroupB"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Twitter</div>
+                    <div class="value" id="twitterGroupB"></div>
+                </div>
+                <div class="row">
+                    <div class="label">配信先</div>
+                    <div class="value" id="streamGroupB"></div>
                 </div>
             </div>
             <div id="box3" class="infoBox">
@@ -72,59 +105,56 @@
                     <div class="value" id="categoryGroupC"></div>
                 </div>
                 <div class="row">
+                    <div class="label">使用ハード</div>
+                    <div class="value" id="consoleGroupC"></div>
+                </div>
+                <div class="row">
+                    <div class="label">PBタイム</div>
+                    <div class="value" id="personalGroupC"></div>
+                </div>
+                <div class="row">
                     <div class="label">目標タイム</div>
                     <div class="value" id="targetGroupC"></div>
                 </div>
+                <div class="row">
+                    <div class="label">Twitter</div>
+                    <div class="value" id="twitterGroupC"></div>
+                </div>
+                <div class="row">
+                    <div class="label">配信先</div>
+                    <div class="value" id="streamGroupC"></div>
+                </div>
             </div>
             <div id="box4" class="infoBox">
-                <div class="row runnerInfo">
-                    <div class="mirrorId">D</div>
-                    <img class="icon" id="iconGroupD">
-                    <span class="name" id="nameGroupD"></span>
-                    <span class="currentTime" id="currentTimeGroupD">00:00:00</span>
-                </div>
                 <div class="row">
-                    <div class="label">ゲーム名</div>
-                    <div class="value" id="gameGroupD"></div>
+                    <div class="comment">実況・解説</div>
                 </div>
-                <div class="row">
-                    <div class="label">カテゴリ</div>
-                    <div class="value" id="categoryGroupD"></div>
+                <br><br><br><br>
+            </div>
+        </div>
+        <div>
+            <div id="mainScreen">
+                <div id="progress1" class="progress">
+                    <div class="mirrorId"><span>A</span></div>
+                    <div id="progressGroupA" class="remaining"></div>
                 </div>
-                <div class="row">
-                    <div class="label">目標タイム</div>
-                    <div class="value" id="targetGroupD"></div>
+                <div id="mainVideo" class="video"></div>
+            </div>
+            <div class="wrapper">
+                <div id="subScreen1" class="subScreen">
+                    <div class="video sub"></div>
+                    <div id="progress2" class="progress">
+                        <div class="mirrorId"><span>B</span></div>
+                        <div id="progressGroupB" class="remaining"></div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div id="mainScreen">
-            <div id="progress1" class="progress">
-                <div class="mirrorId"><span>A</span></div>
-                <div id="progressGroupA" class="remaining"></div>
-            </div>
-            <div id="mainVideo" class="video"></div>
-        </div>
-    </div>
-    <div id="bottom" class="row">
-        <div id="subScreen1" class="subScreen">
-            <div class="video sub"></div>
-            <div id="progress2" class="progress">
-                <div class="mirrorId"><span>B</span></div>
-                <div id="progressGroupB" class="remaining"></div>
-            </div>
-        </div>
-        <div id="subScreen2" class="subScreen">
-            <div class="video sub"></div>
-            <div id="progress3" class="progress">
-                <div class="mirrorId"><span>C</span></div>
-                <div id="progressGroupC" class="remaining"></div>
-            </div>
-        </div>
-        <div id="subScreen3" class="subScreen">
-            <div class="video sub"></div>
-            <div id="progress4" class="progress">
-                <div class="mirrorId"><span>D</span></div>
-                <div id="progressGroupD" class="remaining"></div>
+                <div id="subScreen2" class="subScreen">
+                    <div class="video sub"></div>
+                    <div id="progress3" class="progress">
+                        <div class="mirrorId"><span>C</span></div>
+                        <div id="progressGroupC" class="remaining"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -35,12 +35,6 @@
                 "name": "GroupC",
                 "title": "C班",
                 "file": "GroupC.html"
-            },
-            {
-                "width": "3",
-                "name": "GroupD",
-                "title": "D班",
-                "file": "GroupD.html"
             }
         ],
         "graphics": [
@@ -56,11 +50,6 @@
             },
             {
                 "file": "GroupC_index.html",
-                "width": 1920,
-                "height": 1080
-            },
-            {
-                "file": "GroupD_index.html",
                 "width": 1920,
                 "height": 1080
             }
