@@ -28,21 +28,8 @@ window.onload = function () {
             resetButton.disabled = false;
         }
     });
-    const canvas = document.getElementById('mainBackGround');
-    if (canvas == null) {
-        return false;
-    }
-    const context = canvas.getContext('2d');
 
-    const image = new Image();
-    image.onload = function() {
-        context.drawImage(image, 0, 0);
-        context.globalCompositeOperation = 'xor';
-        context.fillRect(490, 10, 1420, 790);
-        context.fillRect(10, 10, 470, 790);
-        context.fill();
-    };
-    image.src = '/assets/rttr_layouts/materials/bg.png';
+    nodecg.sendMessage("initButton", currentGroup);
 }
 
 function reload() {
