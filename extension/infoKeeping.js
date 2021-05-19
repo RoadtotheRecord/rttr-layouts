@@ -63,7 +63,7 @@ function requestReload(groupName) {
 		.then(function(orgData) {
             data[groupName] = orgData;
             setText(groupName, data[groupName], currentRunner[groupName]);
-            buttomChange(groupName, data[groupName], currentRunner[groupName]);
+            buttonChange(groupName);
             nodecg.sendMessage("reloadButtonChange" + groupName, false);
 		});
 }
@@ -85,7 +85,7 @@ function prev(selestGroup) {
     if (currentRunner[selestGroup] != 0) {
         currentRunner[selestGroup]--;
     }
-    buttomChange(selestGroup, data[selestGroup], currentRunner[selestGroup]);
+    buttonChange(selestGroup);
     setText(selestGroup, data[selestGroup], currentRunner[selestGroup]);
 }
 module.exports.prev = prev;
@@ -94,16 +94,16 @@ function next(selestGroup) {
     if (currentRunner[selestGroup] != data[selestGroup].length - 1) {
         currentRunner[selestGroup]++;
     }
-    buttomChange(selestGroup, data[selestGroup], currentRunner[selestGroup]);
+    buttonChange(selestGroup);
     setText(selestGroup, data[selestGroup], currentRunner[selestGroup]);
 }
 module.exports.next = next;
 
-function buttomChange(selestGroup, data, currentRunner) {
-    if (currentRunner == 0) {
+function buttonChange(selestGroup) {
+    if (currentRunner[selestGroup] == 0) {
         nodecg.sendMessage("prevButtonChange" + selestGroup, true);
         nodecg.sendMessage("nextButtonChange" + selestGroup, false);
-    } else if (currentRunner == data.length - 1) {
+    } else if (currentRunner[selestGroup] == data[selestGroup].length - 1) {
         nodecg.sendMessage("prevButtonChange" + selestGroup, false);
         nodecg.sendMessage("nextButtonChange" + selestGroup, true);
     } else {
@@ -115,3 +115,4 @@ function buttomChange(selestGroup, data, currentRunner) {
 nodecg.listenFor('reloadRunner', (newValue) => { reload(newValue) });
 nodecg.listenFor('prevRunner', (newValue) => { prev(newValue) });
 nodecg.listenFor('nextRunner', (newValue) => { next(newValue) });
+nodecg.listenFor('initButton', (newValue) => { buttonChange(newValue) });
