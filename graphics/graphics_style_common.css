@@ -94,18 +94,12 @@ body {
 #title {
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-family: 'Oswald', sans-serif;
-    font-size: 3.2em;
-    line-height: 1em;
-    text-align: center;
-    color: white;
-    opacity: 0.4;
 }
 
 #title img {
-    width: 1.2em;
-    margin-top: 0.05em;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    width: 480px;
 }
 
 #mainScreen {
