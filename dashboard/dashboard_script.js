@@ -16,11 +16,13 @@ window.onload = function () {
         twitterText.innerText = newValue.twitter;
         streamText.innerText = newValue.stream_link;
     });
+
     nodecg.Replicant("currentTimeText" + currentGroup).on("change", newValue => {
         if (newValue != "NaN:aN:aN") {
             currentText.innerText = newValue;
         }
     });
+
     nodecg.Replicant("runningTimer" + currentGroup).on("change", newValue => {
         if (newValue == "Start") {
             startButton.disabled = true;
@@ -63,9 +65,14 @@ function timerReset() {
     nodecg.sendMessage("resetTimer", currentGroup);
 }
 
+function timerSuccess() {
+    nodecg.sendMessage("successTimer", currentGroup);
+}
+
 nodecg.listenFor('reloadButtonChange' + currentGroup, (newValue) => { reloadButton.disabled = newValue; });
 nodecg.listenFor('prevButtonChange' + currentGroup, (newValue) => { prevButton.disabled = newValue; });
 nodecg.listenFor('nextButtonChange' + currentGroup, (newValue) => { nextButton.disabled = newValue; });
 nodecg.listenFor('startButtonChange' + currentGroup, (newValue) => { startButton.disabled = newValue; });
 nodecg.listenFor('stopButtonChange' + currentGroup, (newValue) => { stopButton.disabled = newValue; });
 nodecg.listenFor('resetButtonChange' + currentGroup, (newValue) => { resetButton.disabled = newValue; });
+nodecg.listenFor('successButtonChange' + currentGroup, (newValue) => { successButton.disabled = newValue; });

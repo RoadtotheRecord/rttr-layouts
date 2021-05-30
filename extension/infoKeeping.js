@@ -37,15 +37,15 @@ module.exports.reload = reload;
 
 function requestReload(groupName) {
     fetch(reqUrl[groupName])
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(orgData) {
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(orgData) {
             data[groupName] = orgData;
             setText(groupName, data[groupName], currentRunner[groupName]);
             buttonChange(groupName);
             nodecg.sendMessage("reloadButtonChange" + groupName, false);
-		});
+        });
 }
 
 function setText(groupName, data, currentRunner) {
