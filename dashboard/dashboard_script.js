@@ -22,7 +22,7 @@ window.onload = function () {
         }
     });
     nodecg.Replicant("runningTimer" + currentGroup).on("change", newValue => {
-        if (newValue) {
+        if (newValue == "Start") {
             startButton.disabled = true;
             stopButton.disabled = false;
             resetButton.disabled = true;
@@ -30,6 +30,9 @@ window.onload = function () {
             startButton.disabled = false;
             stopButton.disabled = true;
             resetButton.disabled = false;
+        }
+        if (newValue == "Stop") {
+            nodecg.sendMessage("resetTimer", currentGroup);
         }
     });
 
