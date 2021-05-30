@@ -53,6 +53,26 @@ function nextRunner() {
     nodecg.sendMessage("nextRunner", currentGroup);
 }
 
+function setupRunner() {
+    nodecg.readReplicant("statusRunner" + currentGroup, value => {
+        if (value == "Running") {
+            nodecg.sendMessage("setupRunner", currentGroup);
+        } else {
+            nodecg.sendMessage("runningRunner", currentGroup);
+        }
+    });
+}
+
+function finishRunner() {
+    nodecg.readReplicant("statusRunner" + currentGroup, value => {
+        if (value == "Running") {
+            nodecg.sendMessage("finishRunner", currentGroup);
+        } else {
+            nodecg.sendMessage("runningRunner", currentGroup);
+        }
+    });
+}
+
 function timerStart() {
     nodecg.sendMessage("startTimer", currentGroup);
 }
@@ -76,3 +96,8 @@ nodecg.listenFor('startButtonChange' + currentGroup, (newValue) => { startButton
 nodecg.listenFor('stopButtonChange' + currentGroup, (newValue) => { stopButton.disabled = newValue; });
 nodecg.listenFor('resetButtonChange' + currentGroup, (newValue) => { resetButton.disabled = newValue; });
 nodecg.listenFor('successButtonChange' + currentGroup, (newValue) => { successButton.disabled = newValue; });
+nodecg.listenFor('setupButtonChange' + currentGroup, (newValue) => { setupButton.disabled = newValue; });
+nodecg.listenFor('finishButtonChange' + currentGroup, (newValue) => { finishButton.disabled = newValue; });
+
+nodecg.listenFor('setupButtonText' + currentGroup, (newValue) => { setupButton.innerText = newValue; });
+nodecg.listenFor('finishButtonText' + currentGroup, (newValue) => { finishButton.innerText = newValue; });
