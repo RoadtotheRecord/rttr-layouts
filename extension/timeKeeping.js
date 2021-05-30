@@ -8,7 +8,6 @@ const limitTime = {};
 const remainingTime = {};
 const countDown = {};
 
-const limitTextRep = {};
 const currentTimeTextRep = {};
 const marginTopRep = {};
 const marginRightRep = {};
@@ -19,20 +18,19 @@ initReplicant('GroupB');
 initReplicant('GroupC');
 
 function initReplicant(groupName) {
-    limitTextRep[groupName] = nodecg.Replicant("limit" + groupName);
-    limitTextRep[groupName].on("change", newValue => { limitTime[groupName] = newValue; });
+    nodecg.Replicant("limit" + groupName).on("change", newValue => { limitTime[groupName] = newValue; });
     currentTimeTextRep[groupName] = nodecg.Replicant("currentTimeText" + groupName);
     marginTopRep[groupName] = nodecg.Replicant("marginTop" + groupName);
     marginRightRep[groupName] = nodecg.Replicant("marginRight" + groupName);
     runningTimerRep[groupName] = nodecg.Replicant("runningTimer" + groupName);
-    runningTimerRep[groupName].value = false;
+    runningTimerRep[groupName].value = "Stop";
 }
 
 function start(selestGroup) {
     nodecg.sendMessage("startButtonChange" + selestGroup, true);
     nodecg.sendMessage("stopButtonChange" + selestGroup, false);
     nodecg.sendMessage("resetButtonChange" + selestGroup, true);
-    runningTimerRep[selestGroup].value = true;
+    runningTimerRep[selestGroup].value = "Start";
     remainingTime[selestGroup] = getNowTime();
     countDown[selestGroup] = setInterval(tryDecrement, 1000, selestGroup);
 }
@@ -42,7 +40,7 @@ function pause(selestGroup) {
     nodecg.sendMessage("startButtonChange" + selestGroup, false);
     nodecg.sendMessage("stopButtonChange" + selestGroup, true);
     nodecg.sendMessage("resetButtonChange" + selestGroup, false);
-    runningTimerRep[selestGroup].value = false;
+    runningTimerRep[selestGroup].value = "Pause";
     if (typeof countDown[selestGroup] !== 'undefined') {
         clearInterval(countDown[selestGroup])
     }
@@ -52,7 +50,7 @@ module.exports.pause = pause;
 function reset(selestGroup) {
     nodecg.sendMessage("startButtonChange" + selestGroup, false);
     nodecg.sendMessage("stopButtonChange" + selestGroup, true);
-    runningTimerRep[selestGroup].value = false;
+    runningTimerRep[selestGroup].value = "Stop";
     if (typeof countDown[selestGroup] !== 'undefined') {
         clearInterval(countDown[selestGroup])
     }
