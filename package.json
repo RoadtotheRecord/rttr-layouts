@@ -20,6 +20,12 @@
         "dashboardPanels": [
             {
                 "width": "3",
+                "name": "Setup",
+                "title": "Setup",
+                "file": "setup.html"
+            },
+            {
+                "width": "3",
                 "name": "GroupA",
                 "title": "A班",
                 "file": "GroupA.html"
@@ -52,6 +58,11 @@
                 "file": "GroupC_index.html",
                 "width": 1920,
                 "height": 1080
+            },
+            {
+                "file": "setup.html",
+                "width": 1920,
+                "height": 1080
             }
         ],
         "assetCategories": [
@@ -59,11 +70,6 @@
                 "name": "runnerIcon",
                 "title": "走者アイコン",
                 "allowedTypes": ["jpg", "jpeg", "gif", "png"]
-            },
-            {
-                "name": "materials",
-                "title": "レイアウト用素材",
-                "allowedTypes": ["png"]
             }
         ]
     },

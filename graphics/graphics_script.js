@@ -1,6 +1,8 @@
 const str = window.location.href.split('/').pop();
 const mainGroup = str.slice(0, -11);
 
+const assetsPath = "/assets/rttr_layouts/runnerIcon/"
+
 const icon = {};
 const nameText = {};
 const currentTimeText = {};
@@ -26,7 +28,7 @@ window.onload = function () {
         context.fillRect(1920 * 0.68, 1080 * 0.64, 1920 * 0.32, 1080 * 0.32);
         context.fill();
     };
-    image.src = '/assets/rttr_layouts/materials/bg.png';
+    image.src = 'material/background.png';
 
     initElement('GroupA');
     initElement('GroupB');
@@ -35,10 +37,6 @@ window.onload = function () {
     initReplicant('GroupA');
     initReplicant('GroupB');
     initReplicant('GroupC');
-
-    loadReplicant('GroupA');
-    loadReplicant('GroupB');
-    loadReplicant('GroupC');
 }
 
 function initElement(groupName) {
@@ -56,16 +54,18 @@ function initElement(groupName) {
 }
 
 function initReplicant(groupName) {
-    nodecg.Replicant("icon" + groupName).on("change", newValue => { icon[groupName].src = newValue; });
-    nodecg.Replicant("name" + groupName).on("change", newValue => { nameText[groupName].innerText = newValue; });
+    nodecg.Replicant("data" + groupName).on("change", newValue => {
+        icon[groupName].src = assetsPath + newValue.icon;
+        nameText[groupName].innerText = newValue.runner_name;
+        gameText[groupName].innerText = newValue.game_title;
+        categoryText[groupName].innerText = newValue.category;
+        consoleText[groupName].innerText = newValue.game_console;
+        personalText[groupName].innerText = newValue.personal_best;
+        targetText[groupName].innerText = newValue.target_time;
+        twitterText[groupName].innerText = newValue.twitter;
+        streamText[groupName].innerText = newValue.stream_link;
+    });
     nodecg.Replicant("currentTimeText" + groupName).on("change", newValue => { currentTimeText[groupName].innerText = newValue; });
-    nodecg.Replicant("game" + groupName).on("change", newValue => { gameText[groupName].innerText = newValue; });
-    nodecg.Replicant("category" + groupName).on("change", newValue => { categoryText[groupName].innerText = newValue; });
-    nodecg.Replicant("console" + groupName).on("change", newValue => { consoleText[groupName].innerText = newValue; });
-    nodecg.Replicant("personal" + groupName).on("change", newValue => { personalText[groupName].innerText = newValue; });
-    nodecg.Replicant("target" + groupName).on("change", newValue => { targetText[groupName].innerText = newValue; });
-    nodecg.Replicant("twitter" + groupName).on("change", newValue => { twitterText[groupName].innerText = newValue; });
-    nodecg.Replicant("stream" + groupName).on("change", newValue => { streamText[groupName].innerText = newValue; });
     nodecg.Replicant("marginTop" + groupName).on("change", newValue => {
         if (mainGroup == groupName) {
             progress[groupName].style.marginTop = newValue;
@@ -74,29 +74,6 @@ function initReplicant(groupName) {
     nodecg.Replicant("marginRight" + groupName).on("change", newValue => {
         if (mainGroup != groupName) {
             progress[groupName].style.marginRight = newValue;
-        }
-    });
-}
-
-function loadReplicant(groupName) {
-    nodecg.readReplicant("icon" + groupName, value => { icon[groupName].src = value; });
-    nodecg.readReplicant("name" + groupName, value => { nameText[groupName].innerText = value; });
-    nodecg.readReplicant("currentTimeText" + groupName, value => { currentTimeText[groupName].innerText = value; });
-    nodecg.readReplicant("game" + groupName, value => { gameText[groupName].innerText = value; });
-    nodecg.readReplicant("category" + groupName, value => { categoryText[groupName].innerText = value; });
-    nodecg.readReplicant("console" + groupName, value => { consoleText[groupName].innerText = value; });
-    nodecg.readReplicant("personal" + groupName, value => { personalText[groupName].innerText = value; });
-    nodecg.readReplicant("target" + groupName, value => { targetText[groupName].innerText = value; });
-    nodecg.readReplicant("twitter" + groupName, value => { twitterText[groupName].innerText = value; });
-    nodecg.readReplicant("stream" + groupName, value => { streamText[groupName].innerText = value; });
-    nodecg.readReplicant("marginTop" + groupName, value => {
-        if (mainGroup == groupName) {
-            progress[groupName].style.marginTop = value;
-        }
-    });
-    nodecg.readReplicant("marginRight" + groupName, value => {
-        if (mainGroup != groupName) {
-            progress[groupName].style.marginRight = value;
         }
     });
 }
