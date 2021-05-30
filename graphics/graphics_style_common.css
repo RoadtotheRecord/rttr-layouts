@@ -22,8 +22,31 @@ body {
     justify-content: space-between;
 }
 
+#screenGroupA {
+    visibility: hidden;
+}
+
+#screenGroupB {
+    visibility: hidden;
+}
+
+#screenGroupC {
+    visibility: hidden;
+}
+
 .video {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: black;
+    position: relative;
+}
+
+.screenText {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: fit-content;
+    font-size: 64px;
 }
 
 #sideBar {

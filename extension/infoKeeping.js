@@ -7,6 +7,7 @@ const nodecg = nodecgApiContext.get();
 const currentRunner = {};
 
 const dataRep = {};
+const statusRunnerRep = {};
 
 const reqUrl = {};
 const data = {};
@@ -27,6 +28,8 @@ initReplicant('GroupC');
 
 function initReplicant(groupName) {
     dataRep[groupName] = nodecg.Replicant("data" + groupName);
+    statusRunnerRep[groupName] = nodecg.Replicant("statusRunner" + groupName);
+    statusRunnerRep[groupName].value = "Running";
 }
 
 function reload(selestGroup) {
@@ -70,6 +73,23 @@ function next(selestGroup) {
 }
 module.exports.next = next;
 
+function setStatus(selestGroup, status) {
+    statusRunnerRep[selestGroup].value = status;
+    if (statusRunnerRep[selestGroup].value == "Running") {
+        nodecg.sendMessage("setupButtonText" + selestGroup, "準備中にする");
+        nodecg.sendMessage("finishButtonText" + selestGroup, "終了にする");
+        nodecg.sendMessage("setupButtonChange" + selestGroup, false);
+        nodecg.sendMessage("finishButtonChange" + selestGroup, false);
+    } else if (statusRunnerRep[selestGroup].value == "Setup") {
+        nodecg.sendMessage("setupButtonText" + selestGroup, "準備完了！");
+        nodecg.sendMessage("finishButtonChange" + selestGroup, true);
+    } else if (statusRunnerRep[selestGroup].value == "Finish") {
+        nodecg.sendMessage("finishButtonText" + selestGroup, "終了解除");
+        nodecg.sendMessage("setupButtonChange" + selestGroup, true);
+    }
+}
+module.exports.setStatus = setStatus;
+
 function buttonChange(selestGroup) {
     if (currentRunner[selestGroup] == 0) {
         nodecg.sendMessage("prevButtonChange" + selestGroup, true);
@@ -86,4 +106,7 @@ function buttonChange(selestGroup) {
 nodecg.listenFor('reloadRunner', (newValue) => { reload(newValue) });
 nodecg.listenFor('prevRunner', (newValue) => { prev(newValue) });
 nodecg.listenFor('nextRunner', (newValue) => { next(newValue) });
+nodecg.listenFor('runningRunner', (newValue) => { setStatus(newValue, "Running") });
+nodecg.listenFor('setupRunner', (newValue) => { setStatus(newValue, "Setup") });
+nodecg.listenFor('finishRunner', (newValue) => { setStatus(newValue, "Finish") });
 nodecg.listenFor('initButton', (newValue) => { buttonChange(newValue) });
