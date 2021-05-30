@@ -4,20 +4,9 @@ const fetch = require('node-fetch');
 const nodecgApiContext = require("./util/nodecg-api-context");
 const nodecg = nodecgApiContext.get();
 
-const assetsPath = "/assets/rttr_layouts/runnerIcon/"
-
 const currentRunner = {};
 
-const iconRep = {};
-const nameRep = {};
-const gameRep = {};
-const categoryRep = {};
-const consoleRep = {};
-const personalRep = {};
-const targetRep = {};
-const twitterRep = {};
-const streamRep = {};
-const limitRep = {};
+const dataRep = {};
 
 const reqUrl = {};
 const data = {};
@@ -37,16 +26,7 @@ initReplicant('GroupB');
 initReplicant('GroupC');
 
 function initReplicant(groupName) {
-    nameRep[groupName] = nodecg.Replicant("name" + groupName);
-    gameRep[groupName] = nodecg.Replicant("game" + groupName);
-    categoryRep[groupName] = nodecg.Replicant("category" + groupName);
-    consoleRep[groupName] = nodecg.Replicant("console" + groupName);
-    personalRep[groupName] = nodecg.Replicant("personal" + groupName);
-    targetRep[groupName] = nodecg.Replicant("target" + groupName);
-    twitterRep[groupName] = nodecg.Replicant("twitter" + groupName);
-    streamRep[groupName] = nodecg.Replicant("stream" + groupName);
-    limitRep[groupName] = nodecg.Replicant("limit" + groupName);
-    iconRep[groupName] = nodecg.Replicant("icon" + groupName);
+    dataRep[groupName] = nodecg.Replicant("data" + groupName);
 }
 
 function reload(selestGroup) {
@@ -69,16 +49,7 @@ function requestReload(groupName) {
 }
 
 function setText(groupName, data, currentRunner) {
-    iconRep[groupName].value = assetsPath + data[currentRunner].icon;
-    nameRep[groupName].value = data[currentRunner].runner_name;
-    gameRep[groupName].value = data[currentRunner].game_title;
-    categoryRep[groupName].value = data[currentRunner].category;
-    consoleRep[groupName].value = data[currentRunner].game_console;
-    personalRep[groupName].value = data[currentRunner].personal_best;
-    targetRep[groupName].value = data[currentRunner].target_time;
-    twitterRep[groupName].value = data[currentRunner].twitter;
-    streamRep[groupName].value = data[currentRunner].stream_link;
-    limitRep[groupName].value = data[currentRunner].limit_time;
+    dataRep[groupName].value = data[currentRunner];
 }
 
 function prev(selestGroup) {
