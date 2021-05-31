@@ -17,7 +17,7 @@ body {
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1870px;
+    width: 97%;
 }
 
 .border {
@@ -26,17 +26,15 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     border:3px solid white;
-    width: 1920px;
+    width: 100%;
 }
 
-.title {
+.catch {
     position: absolute;
     top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    font-size: 96px;
-    width: fit-content;
+    width: 65%;
 }
 
 .text {
@@ -45,6 +43,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 128px;
+    font-size: 112px;
     width: fit-content;
 }
