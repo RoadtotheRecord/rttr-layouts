@@ -2,16 +2,19 @@ version: '3'
 
 services:
   nodecg:
-    image: gunimus/rttr-layouts
+    image: ${LAYOUTS_NAME}
     build: 
       context: .
+      args:
+        - LAYOUTS_NAME=${LAYOUTS_NAME}
+    restart: always
     volumes:
-      - ./dashboard:/app/nodecg/bundles/rttr_layouts/dashboard
-      - ./extension:/app/nodecg/bundles/rttr_layouts/extension
-      - ./graphics:/app/nodecg/bundles/rttr_layouts/graphics
+      - ./dashboard:/app/nodecg/bundles/${LAYOUTS_NAME}/dashboard
+      - ./extension:/app/nodecg/bundles/${LAYOUTS_NAME}/extension
+      - ./graphics:/app/nodecg/bundles/${LAYOUTS_NAME}/graphics
       - ./cfg:/app/nodecg/cfg
       - ./nodecg/db:/app/nodecg/db
       - ./nodecg/logs:/app/nodecg/logs
       - ./nodecg/assets:/app/nodecg/assets
     ports: 
-      - 9091:9090
+      - ${ACCESS_PORT}:9090
