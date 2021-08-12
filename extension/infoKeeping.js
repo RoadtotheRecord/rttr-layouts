@@ -18,7 +18,7 @@ initData('GroupC');
 
 function initData(groupName) {
     currentRunner[groupName] = 0;
-    reqUrl[groupName] = "https://script.google.com/macros/s/" + nodecg.bundleConfig.requestURL + "/exec?sheet=" + groupName;
+    reqUrl[groupName] = `https://script.google.com/macros/s/${nodecg.bundleConfig.google.webAppURL}/exec?id=${nodecg.bundleConfig.google.spreadsheetId}&sheet=${groupName}`;
     requestReload(groupName);
 }
 
