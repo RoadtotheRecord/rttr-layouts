@@ -1,14 +1,7 @@
 :root {
-    --text-color: white;
-
-    --group1-color: darkblue;
-    --group1-background: rgba(0, 0, 139, 0.7);
-
-    --group2-color: darkred;
-    --group2-background: rgba(139, 0, 0, 0.7);
-
-    --group3-color: darkgoldenrod;
-    --group3-background: rgba(184, 135, 11, 0.7);
-
-    --group4-background: rgba(0, 100, 0, 0.7);
+    --text-color: rgb(41, 41, 41);
+    --group1-color: rgba(65, 105, 225, 1);
+    --group2-color: rgba(250, 128, 114, 1);
+    --group3-color: rgba(255, 165, 0, 1);
+    --group4-color: rgba(57, 143, 57, 1);
 }

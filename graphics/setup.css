@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap');
 
 :root {
-    --text-color: white;
+    --text-color: rgb(41, 41, 41);
 }
 
 body {
