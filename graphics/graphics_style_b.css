@@ -1,23 +1,14 @@
-#box1 {
-    background-color: rgba(0, 0, 139, 0.7);
-}
+:root {
+    --text-color: white;
 
-#box2 {
-    background-color: rgba(139, 0, 0, 0.7);
-}
+    --group1-color: darkblue;
+    --group1-background: rgba(0, 0, 139, 0.7);
 
-#box3 {
-    background-color: rgba(184, 135, 11, 0.7);
-}
+    --group2-color: darkred;
+    --group2-background: rgba(139, 0, 0, 0.7);
 
-#progress1 .mirrorId {
-    background-color: darkblue;
-}
+    --group3-color: darkgoldenrod;
+    --group3-background: rgba(184, 135, 11, 0.7);
 
-#progress2 .mirrorId {
-    background-color: darkred;
-}
-
-#progress3 .mirrorId {
-    background-color: darkgoldenrod;
+    --group4-background: rgba(0, 100, 0, 0.7);
 }

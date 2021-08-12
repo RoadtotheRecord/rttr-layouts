@@ -34,6 +34,12 @@ body {
     visibility: hidden;
 }
 
+.playerBox {
+    outline-width: 6px;
+    outline-style: solid;
+	outline-offset: -6px;
+}
+
 .video {
     background-color: black;
     position: relative;
@@ -44,7 +50,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: var(--text-color);
     width: fit-content;
     font-size: 64px;
 }
@@ -60,7 +66,7 @@ body {
     padding: 10px;
     width: calc(100% - 20px);
     font-size: 20px;
-    color: white;
+    color: var(--text-color);
 }
 
 .row {
@@ -155,8 +161,7 @@ body {
 
 .progress .mirrorId {    
     position: absolute;
-    color: white;
-    opacity: 0.8;
+    color: var(--text-color);
 }
 
 #progress1 .mirrorId {
@@ -176,6 +181,42 @@ body {
     height: 100%;
 }
 
-#box4 {
-    background-color: rgba(0, 100, 0, 0.7);
+.outline1 {
+    outline-color: var(--group1-color);
+}
+
+.outline2 {
+    outline-color: var(--group2-color);
+}
+
+.outline3 {
+    outline-color: var(--group3-color);
+}
+
+.box1 {
+    background-color: var(--group1-background);
+}
+
+.box2 {
+    background-color: var(--group2-background);
+}
+
+.box3 {
+    background-color: var(--group3-background);
+}
+
+.box4 {
+    background-color: var(--group4-background);
+}
+
+#progress1 .mirrorId {
+    background-color: var(--group1-color);
+}
+
+#progress2 .mirrorId {
+    background-color: var(--group2-color);
+}
+
+#progress3 .mirrorId {
+    background-color: var(--group3-color);
 }

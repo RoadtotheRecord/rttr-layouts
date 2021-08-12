@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&family=Oswald:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap');
 
+:root {
+    --text-color: white;
+}
+
 body {
     font-family: 'Noto Sans JP', sans-serif;
     margin: 0;
@@ -25,7 +29,7 @@ body {
     top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border:3px solid white;
+    border:3px solid var(--text-color);
     width: 100%;
 }
 
@@ -42,7 +46,7 @@ body {
     top: 86%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: var(--text-color);
     font-size: 112px;
     width: fit-content;
 }

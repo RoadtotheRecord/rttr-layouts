@@ -12,7 +12,7 @@
     <canvas id="mainBackGround" width="1920" height="1080"></canvas>
     <div class="wrapper">
         <div id="sideBar">
-            <div id="box1" class="infoBox">
+            <div class="infoBox box1">
                 <div class="row runnerInfo">
                     <div class="mirrorId">A</div>
                     <img class="icon" id="iconGroupA">
@@ -51,7 +51,7 @@
             <div id="title">
                 <img src="material/logo_C2.png">
             </div>
-            <div id="box2" class="infoBox">
+            <div class="infoBox box2">
                 <div class="row runnerInfo">
                     <div class="mirrorId">B</div>
                     <img class="icon" id="iconGroupB">
@@ -87,7 +87,7 @@
                     <div class="value" id="streamGroupB"></div>
                 </div>
             </div>
-            <div id="box3" class="infoBox">
+            <div class="infoBox box3">
                 <div class="row runnerInfo">
                     <div class="mirrorId">C</div>
                     <img class="icon" id="iconGroupC">
@@ -123,7 +123,7 @@
                     <div class="value" id="streamGroupC"></div>
                 </div>
             </div>
-            <div id="box4" class="infoBox">
+            <div class="infoBox box4">
                 <div class="row">
                     <div class="comment">実況・解説</div>
                 </div>
@@ -136,14 +136,18 @@
                     <div class="mirrorId"><span>A</span></div>
                     <div id="progressGroupA" class="remaining"></div>
                 </div>
-                <div id="screenGroupA" class="video">
-                    <div id="screenTextGroupA" class="screenText">Setup now...</div>
+                <div class="playerBox outline1">
+                    <div id="screenGroupA" class="video">
+                        <div id="screenTextGroupA" class="screenText">Setup now...</div>
+                    </div>
                 </div>
             </div>
             <div class="wrapper">
                 <div id="subScreen1" class="subScreen">
-                    <div id="screenGroupB" class="video sub">
-                        <div id="screenTextGroupB" class="screenText">Setup now...</div>
+                    <div class="playerBox outline2">
+                        <div id="screenGroupB" class="video sub">
+                            <div id="screenTextGroupB" class="screenText">Setup now...</div>
+                        </div>
                     </div>
                     <div id="progress2" class="progress">
                         <div class="mirrorId"><span>B</span></div>
@@ -151,8 +155,10 @@
                     </div>
                 </div>
                 <div id="subScreen2" class="subScreen">
-                    <div id="screenGroupC" class="video sub">
-                        <div id="screenTextGroupC" class="screenText">Setup now...</div>
+                    <div class="playerBox outline3">
+                        <div id="screenGroupC" class="video sub">
+                            <div id="screenTextGroupC" class="screenText">Setup now...</div>
+                        </div>
                     </div>
                     <div id="progress3" class="progress">
                         <div class="mirrorId"><span>C</span></div>
