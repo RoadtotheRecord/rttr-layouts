@@ -1,7 +1,7 @@
 const str = window.location.href.split('/').pop();
 const mainGroup = str.slice(0, -11);
 
-const assetsPath = "/assets/rttr_layouts/runnerIcon/"
+const assetsPath = "/assets/rttr-layouts/runnerIcon/"
 
 window.onload = function () {
     const canvas = document.getElementById('mainBackGround');
