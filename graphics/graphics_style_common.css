@@ -78,6 +78,22 @@ body {
     width: 100%;
 }
 
+.marginTop {
+    margin-top: 8px;
+}
+
+.commentBox {
+    min-width: 100px;
+    margin-left: 8px;
+    text-align: center;
+    width: fit-content;
+}
+
+.commentIcon {
+    width: 80px;
+    height: 80px;
+}
+
 .runnerInfo {
     align-items: center;
 }

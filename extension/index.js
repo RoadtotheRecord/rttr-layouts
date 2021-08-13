@@ -15,4 +15,5 @@ module.exports = nodecg => {
 async function init() {
     require('./infoKeeping');
     require('./timeKeeping');
+    require('./commentatorKeeping');
 }
