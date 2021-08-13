@@ -66,6 +66,11 @@
                 "name": "runnerIcon",
                 "title": "走者アイコン",
                 "allowedTypes": ["jpg", "jpeg", "gif", "png"]
+            },
+            {
+                "name": "commentatorIcon",
+                "title": "MC・解説アイコン",
+                "allowedTypes": ["jpg", "jpeg", "gif", "png"]
             }
         ]
     },

@@ -1,7 +1,14 @@
 const str = window.location.href.split('/').pop();
 const mainGroup = str.slice(0, -11);
 
-const assetsPath = "/assets/rttr-layouts/runnerIcon/"
+const assetsPath = "/assets/rttr-layouts/"
+const assetsRunner = assetsPath + "runnerIcon/"
+const assetsCommentator = assetsPath + "commentatorIcon/"
+
+let commentatorData;
+nodecg.readReplicant("dataCommentator", value => {
+    commentatorData = value;
+});
 
 window.onload = function () {
     const canvas = document.getElementById('mainBackGround');
@@ -69,6 +76,25 @@ function initReplicant(groupName) {
             document.getElementById("screen" + groupName).style.visibility = "visible";
         }
     });
+
+    nodecg.Replicant("dataCommentator").on("change", newValue => {
+        commentatorData = newValue;
+    });
+
+    for (let index = 0; index < 5; index++) {
+        nodecg.Replicant("commentatorName" + index).on("change", newValue => {
+            document.getElementById("commentBox" + index).style.visibility = "hidden";
+            if (newValue.slice(0, 1) != "0") {
+                document.getElementById("nameComment" + index).innerText = newValue.slice(2);
+                for (let i in commentatorData) {
+                    if (newValue.slice(2) == commentatorData[i].name) {
+                        document.getElementById("iconComment" + index).src = assetsCommentator + commentatorData[i].icon;
+                    }
+                }
+                document.getElementById("commentBox" + index).style.visibility = "visible";
+            }
+        });
+    }
 }
 
 function changeStatus(groupName, status) {
@@ -79,7 +105,7 @@ function changeStatus(groupName, status) {
         document.getElementById("name" + groupName).innerText = "Finish";
         document.getElementById("screenText" + groupName).innerText = "Finish";
     }
-    document.getElementById("icon" + groupName).src = assetsPath + "blank.png";
+    document.getElementById("icon" + groupName).src = assetsRunner + "blank.png";
     document.getElementById("game" + groupName).innerText = "";
     document.getElementById("category" + groupName).innerText = "";
     document.getElementById("console" + groupName).innerText = "";
@@ -91,7 +117,7 @@ function changeStatus(groupName, status) {
 }
 
 function changeRunner(groupName, newValue) {
-    document.getElementById("icon" + groupName).src = assetsPath + newValue.icon;
+    document.getElementById("icon" + groupName).src = assetsRunner + newValue.icon;
     document.getElementById("name" + groupName).innerText = newValue.runner_name;
     document.getElementById("game" + groupName).innerText = newValue.game_title;
     document.getElementById("category" + groupName).innerText = newValue.category;
