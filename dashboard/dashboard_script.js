@@ -1,7 +1,7 @@
 const str = window.location.href.split('/').pop();
 const currentGroup = str.slice(0, -5)
 
-const assetsPath = "/assets/rttr_layouts/runnerIcon/"
+const assetsPath = "/assets/rttr-layouts/runnerIcon/"
 
 window.onload = function () {
     nodecg.Replicant("data" + currentGroup).on("change", newValue => {
