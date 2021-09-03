@@ -1,29 +1,26 @@
 'use strict';
 
 const commentatorNameRep = {};
-const currentCommentator = {};
 
 window.onload = function () {
     for (let index = 0; index < 5; index++) {
         commentatorNameRep[index] = nodecg.Replicant(`commentatorName${index}`);
-        nodecg.readReplicant(`commentatorName${index}`, value => {
-            currentCommentator[index] = value;
-            document.getElementById(`commentName${index}`).innerText = value;
+        commentatorNameRep[index].on("change", newValue => {
+            document.getElementById(`commentName${index}`).innerText = newValue.split(",")[1];
         });
     }
 
     nodecg.Replicant("dataCommentator").on("change", newValue => {
         for (let index = 0; index < Object.keys(commentatorNameRep).length; index++) {
             let selectList = `<select id="commentatorSelect${index}">`;
-            let commentatorList = '<option>0 選択なし</option>';
+            selectList += '<option value="0,選択なし">選択なし</option>';
             newValue.forEach(function(value) {
-                if (currentCommentator[index] == `${value.id} ${value.name}`) {
-                    commentatorList += `<option selected>${value.id} ${value.name}</option>`;
+                if (commentatorNameRep[index].value == `${value.id},${value.name}`) {
+                    selectList += `<option selected value="${value.id},${value.name}">${value.name}</option>`;
                 } else {
-                    commentatorList += `<option>${value.id} ${value.name}</option>`;
+                    selectList += `<option value="${value.id},${value.name}">${value.name}</option>`;
                 }
             });
-            selectList += commentatorList;
             selectList += '</select>';
             document.getElementById(`comment${index}`).innerHTML = selectList;   
         }
@@ -32,9 +29,7 @@ window.onload = function () {
 
 function update() {
     for (let index = 0; index < Object.keys(commentatorNameRep).length; index++) {
-        let name = document.getElementById(`commentatorSelect${index}`).value;
-        document.getElementById(`commentName${index}`).innerText = name;
-        commentatorNameRep[index].value = name;
+        commentatorNameRep[index].value = document.getElementById(`commentatorSelect${index}`).value;
     }
 }
 

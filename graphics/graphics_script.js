@@ -84,10 +84,10 @@ function initReplicant(groupName) {
     for (let index = 0; index < 5; index++) {
         nodecg.Replicant("commentatorName" + index).on("change", newValue => {
             document.getElementById("commentBox" + index).style.visibility = "hidden";
-            if (newValue.slice(0, 1) != "0") {
-                document.getElementById("nameComment" + index).innerText = newValue.slice(2);
+            if (newValue.split(",")[0] != "0") {
+                document.getElementById("nameComment" + index).innerText = newValue.split(",")[1];
                 for (let i in commentatorData) {
-                    if (newValue.slice(2) == commentatorData[i].name) {
+                    if (newValue.split(",")[1] == commentatorData[i].name) {
                         document.getElementById("iconComment" + index).src = assetsCommentator + commentatorData[i].icon;
                     }
                 }
