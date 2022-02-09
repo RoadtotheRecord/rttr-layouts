@@ -14,7 +14,7 @@ window.onload = function () {
         targetText.innerText = newValue.target_time;
         limitText.innerText = newValue.limit_time;
         twitterText.innerText = newValue.twitter;
-        streamText.innerText = newValue.stream_link;
+        streamText.innerText = newValue.stream_text;
     });
 
     nodecg.Replicant("currentTimeText" + currentGroup).on("change", newValue => {
