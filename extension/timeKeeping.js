@@ -88,7 +88,7 @@ function tryDecrement(selestGroup) {
             clearInterval(countDown[selestGroup])
         }
         if (runningTimerRep[selestGroup].value != "Success") {
-            currentTimeTextRep[selestGroup].value = "Time up";
+            currentTimeTextRep[selestGroup].value = "Last Run";
             runningTimerRep[selestGroup].value = "Timeup";
         }
     }
